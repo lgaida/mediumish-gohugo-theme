@@ -48,10 +48,10 @@ comments: false
 Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aenean semper libero quis dictum dapibus. Nulla egestas vitae augue eu rutrum. Duis ullamcorper dictum ipsum. Interdum et malesuada fames ac ante ipsum primis in faucibus. Suspendisse tortor dui, fermentum non dapibus id, volutpat non odio.
 ```
 
-`publishdate`: is displayed at the top of the single-view
-`lastmod`: is displayed as a hint on the single-view
-`image`: is displayed in the list- and single-view
-`tags`: are used as usual, just add the tags you want to use. They are displayed in the jumbotron on the list-view, and on the bottom of each single-view
+`publishdate`: is displayed at the top of the single-view\
+`lastmod`: is displayed as a hint on the single-view\
+`image`: is displayed in the list- and single-view\
+`tags`: are used as usual, just add the tags you want to use. They are displayed in the jumbotron on the list-view, and on the bottom of each single-view\
 `comments`: true/false to turn on/off disqus-comments
 
 
@@ -75,10 +75,10 @@ copyright = "John Doe - All rights reserved"
 disqusShortname = "shortDisquis"
 googleAnalytics = "UA-1XXXXXXX1-X"
 ```
-`title`: is displayed on the postlist and on each post as the title
-`summaryLength`: feel free to play around with this
-`copyright`: is displayed in the footer next to the copyright-logo
-`disqusShortname`: provide your disqusShortname
+`title`: is displayed on the postlist and on each post as the title\
+`summaryLength`: feel free to play around with this\
+`copyright`: is displayed in the footer next to the copyright-logo\
+`disqusShortname`: provide your disqusShortname\
 `googleAnalytics`: provide your googleAnalytics-Code
 
 ### General Params
@@ -86,10 +86,13 @@ googleAnalytics = "UA-1XXXXXXX1-X"
 [params]
   logo = "/images/icon.png"
   description ="the clean blog!"
+  mailchimp = "you can provide a mailchimp-link here, see below"
+  mailprotect = "you can provide a protector-name here, see below"
 ```
 `logo`: is displayed in titlebar and alertbar
 `description`: is displayed under title
-
+`mailchimp` and `mailprotect`:
+ 
 HIER SCREENSHOTS REIN
 
 ### Author Params
@@ -99,7 +102,6 @@ HIER SCREENSHOTS REIN
   thumbnail = "/images/author.jpg"
   description = "Creator of this blog."
 ```
-HIER SCREENSHOTS REIN
 
 ### Landingpage Params
 ```toml
@@ -110,9 +112,6 @@ HIER SCREENSHOTS REIN
   mdtext = '''Seeking ~~knowledge and~~ money. Currently trying to get this blog running, still don't know what the blog will be about!'''
   alertbar = true
 ```
-HIER SCREENSHOTS REIN
-
-### Social Params
 You can currently provide your username from `github`, `linkedin`, `xing`. They will be displayed as icons on the landingpage.
 ```toml
 [params.social]
@@ -120,7 +119,7 @@ You can currently provide your username from `github`, `linkedin`, `xing`. They 
   linkedin = "<username>"
   xing = "<username>"
 ```
-HIER SCREENSHOTS REIN
+
 
 ## Contributing
 
