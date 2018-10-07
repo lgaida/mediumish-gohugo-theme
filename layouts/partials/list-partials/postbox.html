@@ -4,8 +4,7 @@
         <div class="maxthumb">
             <a href="{{ .URL }}">
                 {{with .Params.image}}
-                    {{ $imageURL := (printf "%s%s" $.Site.BaseURL $.Params.image) }}
-                    <img class="img-fluid" src="{{ $imageURL }}" alt="A thumbnail image">
+                    <img class="img-fluid" src="{{ . }}" alt="A thumbnail image">
                 {{end}}                
             </a>
         </div>
