@@ -108,6 +108,7 @@ HIER SCREENSHOTS REIN
   title = "John Doe"
   subtitle = "I'm a unique placeholder. Working here and there!"
   mdtext = '''Seeking ~~knowledge and~~ money. Currently trying to get this blog running, still don't know what the blog will be about!'''
+  alertbar = true
 ```
 HIER SCREENSHOTS REIN
 
