@@ -2,21 +2,23 @@
 
 This theme for gohugo is a customized port based on the [Mediumish Jekyll-Theme](//github.com/wowthemesnet/mediumish-theme-jekyll) by [WowThemesNet](//github.com/wowthemesnet). The original theme ships with a few more features than this ported version but i also added features which the original version did not include.
 
+See the [Demo](https://lgaida.github.io/mediumish-gohugo-theme-demo) and [Demo-Source](https://github.com/lgaida/mediumish-gohugo-theme-demo)
+
 ![screenshot](https://raw.githubusercontent.com/lgaida/mediumish-gohugo-theme/master/images/screenshot.png)
 
 ## Features
 + Landingpage
 + 404-Page
 + Posts
-++ tags can be used
-++ shareable via socialmedia
+    + tags can be used
+    + shareable via socialmedia
 + Custom pagination
 + Prev/Next-Links
 + Tag-Overview in Jumbotron
 + Integrations:
-++ Disqus Comments
-++ Google Analytics
-++ *Mailchimp Integration* (in the future)
+    + Disqus Comments
+    + Google Analytics
+    + Mailchimp
 
 ## Installation
 Inside the folder of your Hugo site run:
