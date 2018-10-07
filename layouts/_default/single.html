@@ -22,7 +22,7 @@
                         {{if isset .Site.Params.author "description"}}
                         <div class="post-top-meta">
                             <div>
-                                <img class="author-thumb" src="{{.Site.Params.author.thumbnail}}" alt="{{ .Site.Params.author.name }}">
+                                <img class="author-thumb" src="{{ .Site.Params.author.thumbnail | urlize | relURL}}" alt="{{ .Site.Params.author.name }}">
                             </div>
                             <div >
                                 <a target="_blank" class="link-dark">{{ .Site.Params.author.name }}</a><br>
@@ -44,8 +44,7 @@
 
                     <!-- Post Featured Image -->
                     {{with .Params.image}}
-                        {{ $imageURL := (printf "%s%s" $.Site.BaseURL $.Params.image) }}
-                        <img class="featured-image img-fluid" src="{{ $imageURL }}" alt="thumbnail for this post">
+                        <img class="featured-image img-fluid" src="{{ . | urlize | relURL }}" alt="thumbnail for this post">
                     {{end}}
                     <!-- End Featured Image -->
 

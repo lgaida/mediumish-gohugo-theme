@@ -4,8 +4,7 @@
         <div class="maxthumb">
             <a href="{{ .URL }}">
                 {{with .Params.image}}
-                    {{ $imageURL := (printf "%s%s" $.Site.BaseURL $.Params.image) }}
-                    <img class="img-fluid" src="{{ $imageURL }}" alt="A thumbnail image">
+                    <img class="img-fluid" src="{{ . | urlize | relURL }}" alt="A thumbnail image">
                 {{end}}                
             </a>
         </div>
@@ -18,7 +17,7 @@
                 {{if isset .Site.Params "author"}}
                 {{if isset .Site.Params "author_thumb"}}
                     <span class="meta-footer-thumb">
-                    <img class="author-thumb" src="{{.Site.Params.author_thumb}}" alt="{{ .Site.Params.author }}">
+                    <img class="author-thumb" src="{{ .Site.Params.author_thumb | urlize | relURL  }}" alt="{{ .Site.Params.author }}">
                     </span>                
                     <span class="author-meta">
                     <span class="post-name">{{ .Site.Params.author }}</a></span><br/>

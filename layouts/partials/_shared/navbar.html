@@ -5,8 +5,8 @@
         <!-- Begin Logo -->
         <a class="navbar-brand" href="{{ .Site.BaseURL }}/">
 
-            {{ if isset .Site.Params "logo" }}
-            <img src="{{ .Site.Params.logo | urlize | absURL }}" alt="logo">
+            {{ with .Site.Params.logo }}
+            <img src="{{ . | urlize | relURL }}" alt="logo">
             {{ else }}
             <span style="font-family:Righteous;">{{.Site.Title}}</span>
             {{ end }}
