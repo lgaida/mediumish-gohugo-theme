@@ -2,6 +2,8 @@
 
 This theme for gohugo is a customized port based on the [Mediumish Jekyll-Theme](//github.com/wowthemesnet/mediumish-theme-jekyll) by [WowThemesNet](//github.com/wowthemesnet). The original theme ships with a few more features than this ported version but i also added features which the original version did not include.
 
+![screenshot](https://raw.githubusercontent.com/lgaida/mediumish-gohugo-theme/master/images/screenshot.png)
+
 ## Features
 + Landingpage
 + 404-Page
@@ -89,11 +91,11 @@ googleAnalytics = "UA-1XXXXXXX1-X"
   mailchimp = "you can provide a mailchimp-link here, see below"
   mailprotect = "you can provide a protector-name here, see below"
 ```
-`logo`: is displayed in titlebar and alertbar
-`description`: is displayed under title
-`mailchimp` and `mailprotect`:
- 
-HIER SCREENSHOTS REIN
+`logo`: is displayed in titlebar and alertbar\
+`description`: is displayed under title\
+`mailchimp` and `mailprotect`: provide links to a mailchimp-list and a mailchimp-protector id, the following screenshot should clarify
+
+![mailchimp-example](https://raw.githubusercontent.com/lgaida/mediumish-gohugo-theme/master/images/mailchimp.png)
 
 ### Author Params
 ```toml
@@ -102,6 +104,7 @@ HIER SCREENSHOTS REIN
   thumbnail = "/images/author.jpg"
   description = "Creator of this blog."
 ```
+![author-params](https://raw.githubusercontent.com/lgaida/mediumish-gohugo-theme/master/images/authorpost.png)
 
 ### Landingpage Params
 ```toml
@@ -109,7 +112,9 @@ HIER SCREENSHOTS REIN
   picture = "/images/author.jpg"
   title = "John Doe"
   subtitle = "I'm a unique placeholder. Working here and there!"
-  mdtext = '''Seeking ~~knowledge and~~ money. Currently trying to get this blog running, still don't know what the blog will be about!'''
+  mdtext = '''Currently trying to get this blog running, still don't know what the blog will be about!\
+**This textblock is a demonstration of the mdtext-param.**\
+### This is a markdown heading'''
   alertbar = true
 ```
 You can currently provide your username from `github`, `linkedin`, `xing`. They will be displayed as icons on the landingpage.
@@ -119,6 +124,7 @@ You can currently provide your username from `github`, `linkedin`, `xing`. They 
   linkedin = "<username>"
   xing = "<username>"
 ```
+![landingpage-params](https://raw.githubusercontent.com/lgaida/mediumish-gohugo-theme/master/images/landing.png)
 
 
 ## Contributing
