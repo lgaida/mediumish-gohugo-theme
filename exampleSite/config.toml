@@ -1,16 +1,18 @@
-baseURL = "https://localhost:1313"
+baseURL = "https://localhost:1313/mediumish-gohugo-theme-demo/"
 languageCode = "en-us"
 title = "Mediumish"
 theme = "mediumish-gohugo-theme"
 summaryLength = 25
 copyright = "John Doe - All rights reserved"
 enableEmoji = true
+publishDir = "docs"
 #disqusShortname = "your-shortname-here"
 #googleAnalytics = "UA-1XXXXXXX1-1"
 
 [params]
   logo = "/images/logo.png"
   description ="the clean blog!"
+  #mailchimp = "you can provide a mailchimp-link here"
 
 [params.author]
   name = "John Doe"
@@ -22,7 +24,9 @@ enableEmoji = true
   title = "John Doe"
   subtitle = "I'm a unique placeholder. Working here and there!"
   mdtext = '''
-Seeking ~~knowledge and~~ money. Currently trying to get this blog running, still don't know what the blog will be about!
+Currently trying to get this blog running, still don't know what the blog will be about!\
+**This textblock is a demonstration of the mdtext-param.**\
+### This is a markdown heading
 '''
   alertbar = false
 
