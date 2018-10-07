@@ -11,11 +11,12 @@
             &nbsp; Never miss a <b>story</b>, subscribe to our newsletter
         </span>
 
-        <form method="post" name="mc-embedded-subscribe-form" class="wj-contact-form validate" target="_blank" novalidate>
-            <div class="mc-field-group">
-                <input type="email" placeholder="Email" name="EMAIL" class="required email" id="mce-EMAIL" autocomplete="on" required>
-                <input type="submit" value="Subscribe" name="subscribe" class="heart">
-            </div>
+        <form action="{{ with .Site.Params.mailchimp }}{{.}}{{end}}" method="post" name="mc-embedded-subscribe-form" target="_blank" novalidate>
+		<input type="email" placeholder="Email" name="EMAIL" autocomplete="on" required>
+	    	<!-- real people should not fill this in and expect good things - do not remove this or risk form bot signups-->
+	    	<div style="position: absolute; left: -5000px;" aria-hidden="true"><input type="text" name="{{ with .Site.Params.mailprotect }}{{.}}{{end}}" tabindex="-1" value=""></div>
+		<input type="submit" value="Subscribe" name="subscribe" >
         </form>
+
 	</div>
 </div> 
