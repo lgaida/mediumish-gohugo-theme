@@ -3,8 +3,8 @@
 <div class="alertbar">
 	<div class="container text-center">
         <span>
-            {{ with .Site.Params.logo }}
-                <img src="{{ . }}" alt="logo">
+            {{ if isset .Site.Params "logo" }}
+                <img src="{{ .Site.Params.logo | urlize | absURL }}" alt="logo">
             {{ else }}
                 <span style="font-family:Righteous;">{{.Site.Title}}</span>
             {{ end }}

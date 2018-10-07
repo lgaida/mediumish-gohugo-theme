@@ -44,7 +44,8 @@
 
                     <!-- Post Featured Image -->
                     {{with .Params.image}}
-                        <img class="featured-image img-fluid" src="{{ . }}" alt="thumbnail for this post">
+                        {{ $imageURL := (printf "%s%s" $.Site.BaseURL $.Params.image) }}
+                        <img class="featured-image img-fluid" src="{{ $imageURL }}" alt="thumbnail for this post">
                     {{end}}
                     <!-- End Featured Image -->
 
