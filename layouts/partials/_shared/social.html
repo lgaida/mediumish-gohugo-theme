@@ -1,0 +1,11 @@
+<section class="text-center">
+    {{ with .Site.Params.social.github }}
+    <a href="https://github.com/{{.}}"><i class="fab fa-github social-icon" aria-hidden="true"></i></a>
+    {{ end }}
+    {{ with .Site.Params.social.linkedin }}
+    <a href="https://linkedin.com/in/{{.}}"><i class="fab fa-linkedin social-icon" aria-hidden="true"></i></a>
+    {{ end }}
+    {{ with .Site.Params.social.xing }}
+    <a href="https://www.xing.com/profile/{{.}}"><i class="fab fa-xing social-icon" aria-hidden="true"></i></a>
+    {{ end }}
+</section>

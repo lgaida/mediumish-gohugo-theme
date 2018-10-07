@@ -1,0 +1,16 @@
+<!-- Categories Jumbotron
+================================================== -->
+<div class="jumbotron fortags">	
+	<div class="d-flex h-100">
+		<div class="col-md-4 align-self-center text-center h-100">
+            <div class="d-flex align-items-center justify-content-center h-100">
+				<h2 class="d-md-block d-none align-self-center">Explore →</h2>
+			</div>
+		</div>
+		<div class="col-md-8 align-self-center text-center">
+        {{ range $name, $taxonomy := .Site.Taxonomies.tags }}
+            <a href="{{ "/tags/" | relLangURL }}{{ $name | urlize }}">{{ $name }}</a>
+        {{ end }}
+		</div>
+	</div>
+</div>

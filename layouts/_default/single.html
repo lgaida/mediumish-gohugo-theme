@@ -1,0 +1,105 @@
+{{ define "header"}}
+    {{- partial "_shared/navbar.html" . -}}
+{{ end }}
+
+{{ define "main" }}
+    {{- partial "_shared/title.html" . -}}
+    <div class="main-content">
+        <!-- Begin Article
+        ================================================== -->
+        <div class="container">
+            <div class="row">
+                <!-- Post Share -->
+                <div class="col-md-2 pl-0">      
+                    {{- partial "single-partials/share.html" . -}}
+                </div>
+                <!-- Post -->                
+                <div class="col-md-9 flex-first flex-md-unordered">
+                    <div class="mainheading">
+                        <!-- Author Box -->	
+                        {{if isset .Site.Params.author "name"}}
+                        {{if isset .Site.Params.author "thumbnail"}}
+                        {{if isset .Site.Params.author "description"}}
+                        <div class="post-top-meta">
+                            <div>
+                                <img class="author-thumb" src="{{.Site.Params.author.thumbnail}}" alt="{{ .Site.Params.author.name }}">
+                            </div>
+                            <div >
+                                <a target="_blank" class="link-dark">{{ .Site.Params.author.name }}</a><br>
+                                <span class="author-description">
+                                    {{ .Site.Params.author.description }}<br>
+                                    <i class="far fa-star"></i>
+                                    {{ dateFormat "Jan 2, 2006" .PublishDate }}
+                                    <i class="far fa-clock clock"></i>
+                                    {{ .ReadingTime }} min read
+                                </span>					
+                            </div>
+                        </div>			
+                        {{end}}	
+                        {{end}}
+                        {{end}}                        
+                        <!-- Post Title -->
+                        <h1 class="posttitle">{{ .Title }}</h1> 
+                    </div>
+
+                    <!-- Post Featured Image -->
+                    {{with .Params.image}}
+                        {{ $imageURL := (printf "%s%s" $.Site.BaseURL $.Params.image) }}
+                        <img class="featured-image img-fluid" src="{{ $imageURL }}" alt="thumbnail for this post">
+                    {{end}}
+                    <!-- End Featured Image -->
+
+                    <!-- Post Date -->
+                    {{with .Lastmod }}
+                    <p>
+                        <small class="post-date">
+                        (Updated: <time class="post-date" datetime="{{ dateFormat "2006-02-14" . }}" itemprop="dateModified">{{ dateFormat "Monday, Jan 2, 2006" . }}</time>)
+                        </small>
+                    </p>
+                    {{end}}
+                    
+                    <!-- Post Content -->
+                    <div class="article-post">
+                        {{ .Content}}
+                    </div>
+                    
+                    <!-- Post Categories -->
+                    <div class="after-post-tags">
+                        <ul class="tags">
+                        {{ range .Params.tags }}
+                        <li>
+                        <a href="{{ "/tags/" | relLangURL }}{{ . | urlize }}">{{.}}</a>
+                        </li>
+                        {{ end }}
+                        </ul>
+                    </div>
+                    <!-- End Categories -->
+                    
+                    <!-- Prev/Next -->
+                    <div class="row PageNavigation d-flex justify-content-between font-weight-bold">
+                    {{with .Prev}}
+                        <a class="prev d-block col-md-6" href="{{.URL}}"> &laquo; {{.Title}}</a>
+                    {{end}}
+                    {{with .Next}}
+                        <a class="next d-block col-md-6 text-lg-right" href="{{.URL}}">{{.Title}} &raquo;</a>
+                    {{end}}
+                    <div class="clearfix"></div>
+                    </div>
+                    <!-- End Prev/Next -->
+                </div>
+                <!-- End Post -->
+            </div>
+        </div>
+        <!-- End Article
+        ================================================== -->
+        {{ if .Params.comments }}
+            {{- partial "single-partials/comments.html" . -}}
+        {{ end }}
+    </div>
+    {{- partial "_shared/alertbar.html" . -}}
+{{ end }}
+
+{{ define "footer"}}
+    {{- partial "_shared/jumbotron.html" . -}}
+    {{- partial "_shared/footer.html" . -}}
+{{ end }}
