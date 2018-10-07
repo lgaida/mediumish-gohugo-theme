@@ -19,7 +19,11 @@
         </section>
     </div>
     {{- partial "_shared/social.html" . -}}
-    {{- partial "_shared/alertbar.html" . -}}
+    {{ with .Site.Params.index.alertbar }}
+        {{ if . }}
+            {{- partial "_shared/alertbar.html" . -}}
+        {{ end }}
+    {{ end }}
 {{end}}
 
 {{ define "footer" }}

@@ -2,8 +2,8 @@
 title: "{{ replace .Name "-" " " | title }}"
 date: {{ .Date }}
 publishdate: {{ .Date }}
-lastmod: {{ .Date }}
 image: ""
+tags:[]
 comments: true
 draft: true
 ---

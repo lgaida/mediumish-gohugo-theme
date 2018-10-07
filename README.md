@@ -37,6 +37,7 @@ You then have a few options which i want to point out in the following.
 ---
 title: "My first post"
 date: 2018-10-01T15:25:19+02:00
+publishdate: 2018-10-07T11:17:14+02:00
 lastmod: 2018-10-08T18:55:29+02:00
 image: "/images/Test.jpg"
 tags: ["post", "interesting"]
@@ -47,7 +48,8 @@ comments: false
 Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aenean semper libero quis dictum dapibus. Nulla egestas vitae augue eu rutrum. Duis ullamcorper dictum ipsum. Interdum et malesuada fames ac ante ipsum primis in faucibus. Suspendisse tortor dui, fermentum non dapibus id, volutpat non odio.
 ```
 
-`lastmod`: is displayed as a updated-hint
+`publishdate`: is displayed at the top of the single-view
+`lastmod`: is displayed as a hint on the single-view
 `image`: is displayed in the list- and single-view
 `tags`: are used as usual, just add the tags you want to use. They are displayed in the jumbotron on the list-view, and on the bottom of each single-view
 `comments`: true/false to turn on/off disqus-comments
@@ -56,9 +58,9 @@ Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aenean semper libero qu
 ## Static Content
 I added a customized layout for content of type "static", which means that posts in the folder "static" are displayed as standalone pages. I also disabled the list-layout for this folder.
 
-For example: to create an impress, simply go with the following command and add your markdown-text.
+For example: to create an imprint, simply go with the following command and add your markdown-text.
 ```
-hugo new static/impress.md
+hugo new static/imprint.md
 ```
 
 ## Configuration
@@ -66,10 +68,10 @@ You should at least specify the following default params in your config.toml
 ```toml
 baseURL = "http://yourdomain.com"
 languageCode = "en-us"
-title = "The one and only techblog"
+title = "Mediumish"
 theme = "mediumish-gohugo-theme"
 summaryLength = 25
-copyright = "yourdomain.com - All rights reserved"
+copyright = "John Doe - All rights reserved"
 disqusShortname = "shortDisquis"
 googleAnalytics = "UA-1XXXXXXX1-X"
 ```
@@ -82,8 +84,8 @@ googleAnalytics = "UA-1XXXXXXX1-X"
 ### General Params
 ```toml
 [params]
-  logo = "/images/logo.png"
-  description ="hands on tech!"
+  logo = "/images/icon.png"
+  description ="the clean blog!"
 ```
 `logo`: is displayed in titlebar and alertbar
 `description`: is displayed under title
@@ -95,7 +97,7 @@ HIER SCREENSHOTS REIN
 [params.author]
   name = "John Doe"
   thumbnail = "/images/author.jpg"
-  description = "Creator of this blog!"
+  description = "Creator of this blog."
 ```
 HIER SCREENSHOTS REIN
 
@@ -104,8 +106,18 @@ HIER SCREENSHOTS REIN
 [params.index]
   picture = "/images/author.jpg"
   title = "John Doe"
-  subtitle = "B.Sc Computer Science"
-  mdtext = '''This is the mdtextfield, where you can write markdown to provide more information than just a few textlines'''
+  subtitle = "I'm a unique placeholder. Working here and there!"
+  mdtext = '''Seeking ~~knowledge and~~ money. Currently trying to get this blog running, still don't know what the blog will be about!'''
+```
+HIER SCREENSHOTS REIN
+
+### Social Params
+You can currently provide your username from `github`, `linkedin`, `xing`. They will be displayed as icons on the landingpage.
+```toml
+[params.social]
+  github = "<username>"
+  linkedin = "<username>"
+  xing = "<username>"
 ```
 HIER SCREENSHOTS REIN
 
