@@ -1,4 +1,4 @@
-baseURL = "https://localhost:1313/mediumish-gohugo-theme-demo/"
+baseURL = "https://example.com/"
 languageCode = "en-us"
 title = "Mediumish"
 theme = "mediumish-gohugo-theme"
