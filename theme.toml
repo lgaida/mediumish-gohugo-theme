@@ -8,8 +8,8 @@ features = []
 min_version = "0.41"
 
 [author]
-  name = "Lenard Gaida"
-  homepage = "lgaida.de"
+  name = "lgaida"
+  homepage = "http://lgaida.de"
 
 # If porting an existing theme
 [original]
