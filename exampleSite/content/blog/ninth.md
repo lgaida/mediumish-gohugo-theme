@@ -2,7 +2,6 @@
 title: "Ninth"
 date: 2018-10-07T11:40:14+02:00
 publishdate: 2018-10-07T11:40:14+02:00
-lastmod: 2018-10-07T11:40:14+02:00
 image: "/images/blog/9.jpg"
 tags: ["interesting", "drink"]
 comments: false

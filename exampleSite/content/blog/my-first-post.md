@@ -2,7 +2,6 @@
 title: "My First Post"
 date: 2018-10-07T11:17:14+02:00
 publishdate: 2018-10-07T11:17:14+02:00
-lastmod: 2018-10-07T11:17:14+02:00
 image: "/images/blog/1.jpg"
 tags: ["interesting"]
 comments: false

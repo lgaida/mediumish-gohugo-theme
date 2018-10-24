@@ -47,15 +47,6 @@
                         <img class="featured-image img-fluid" src="{{ . | urlize | relURL }}" alt="thumbnail for this post">
                     {{end}}
                     <!-- End Featured Image -->
-
-                    <!-- Post Date -->
-                    {{with .Lastmod }}
-                    <p>
-                        <small class="post-date">
-                        (Updated: <time class="post-date" datetime="{{ dateFormat "2006-02-14" . }}" itemprop="dateModified">{{ dateFormat "Monday, Jan 2, 2006" . }}</time>)
-                        </small>
-                    </p>
-                    {{end}}
                     
                     <!-- Post Content -->
                     <div class="article-post">
