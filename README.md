@@ -119,12 +119,14 @@ googleAnalytics = "UA-1XXXXXXX1-X"
 ### This is a markdown heading'''
   alertbar = true
 ```
-You can currently provide your username from `github`, `linkedin`, `xing`. They will be displayed as icons on the landingpage.
+You can currently provide your username from `github`, `linkedin`, `xing`, `twitter`, `medium`. They will be displayed as icons on the landingpage.
 ```toml
 [params.social]
   github = "<username>"
   linkedin = "<username>"
   xing = "<username>"
+  medium = "<username>"
+  twitter = "<username>"
 ```
 ![landingpage-params](https://raw.githubusercontent.com/lgaida/mediumish-gohugo-theme/master/images/landing.png)
 
