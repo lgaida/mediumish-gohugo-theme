@@ -34,6 +34,8 @@ Currently trying to get this blog running, still don't know what the blog will b
   github = "<username>"
   linkedin = "<username>"
   xing = "<username>"
+  medium = "<username>"
+  twitter = "<username>"
 
 ## Main Menu
 [[menu.main]]
