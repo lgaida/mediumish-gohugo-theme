@@ -65,17 +65,17 @@
                     </div>
                     <!-- End Categories -->
                     
-                    <!-- Prev/Next -->
+                    <!-- Next and PrevPage -->
                     <div class="row PageNavigation d-flex justify-content-between font-weight-bold">
-                    {{with .Prev}}
-                        <a class="prev d-block col-md-6" href="{{.URL}}"> &laquo; {{.Title}}</a>
+                    {{with .NextPage}}
+                        <a class="d-block col-md-6" href="{{.URL}}"> &laquo; {{.Title}}</a>
                     {{end}}
-                    {{with .Next}}
-                        <a class="next d-block col-md-6 text-lg-right" href="{{.URL}}">{{.Title}} &raquo;</a>
+                    {{with .PrevPage}}
+                        <a class="d-block col-md-6 text-lg-right" href="{{.URL}}">{{.Title}} &raquo;</a>
                     {{end}}
                     <div class="clearfix"></div>
                     </div>
-                    <!-- End Prev/Next -->
+                    <!-- End Next and PrevPage -->
                 </div>
                 <!-- End Post -->
             </div>
