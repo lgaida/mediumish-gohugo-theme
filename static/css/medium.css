@@ -88,7 +88,7 @@ section.recent-posts {
     transition: all 0.3s cubic-bezier(.25,.8,.25,1);
 }
 .listfeaturedtag .wrapthumbnail {
-    min-height:290px;
+    height:290px;
     flex:0 0 auto;
     height: 100%;
 }
@@ -243,8 +243,8 @@ span.post-name a,span.post-read-more a:hover {
 }
 .article-post {
     font-family:Merriweather;
-    font-size:1.2rem;
-    line-height:1.8;
+    font-size:1.1rem;
+    line-height:1.84;
     color:rgba(0,0,0,.8);
 }
 blockquote {
@@ -580,6 +580,10 @@ span.navigation {
 iframe {
    max-width:100%;
 }
+.transpdark {    
+    background: rgba(0,0,0,0.75);
+    color: #fff;
+}
 @media (min-width:768px) {
     .jumbotron.fortags {
         margin-bottom:-50px;
@@ -594,12 +598,16 @@ iframe {
         background:rgba(0,0,0,0.75);
         color:#fff;
    }
-    .jumbotron.fortags .col-md-4 h2 {
-        font-weight:300;
-   }
     .jumbotron.fortags .row {
         margin:0;
    }
+}
+.jumbotron.fortags { 
+         margin-top: 3rem;
+         padding:0;
+         border-radius:0;
+         background-image: url(../images/jumbotron.jpg);
+         background-size:cover;
 }
 .jumbotron.fortags a {
     padding: 5px 10px 7px;
