@@ -27,8 +27,8 @@ Inside the folder of your Hugo site run:
     $ git clone https://github.com/lgaida/mediumish-gohugo-theme
 
 ## Preface
-Most of the images e.g logo, author-image, post-images should be placed somewhere in the static folder of your gohugo-site. You can then reference them via the config.toml or the post.md-files. I would suggest placing all your config-specific images under `static/images` and all post-related images under a arbitrary folder like `static/images/posts`.
-However your folder-structure will be there is one exception: you need a file named `jumbotron.jpg` to be present under `static/images` since this one is referenced in the .css
+Most image files should be placed somewhere within the `static` folder of your gohugo website. This allows them to be easily referenced from the config.toml or post.md files. You may structure the files and folders within `static` however you'd like, with one exception: There must be a file named `jumbotron.jpg` present under the path `static/images` as it is referenced in the .css.
+
 
 ## Post Example
 To create a simple post use the hugo new command as usual.
