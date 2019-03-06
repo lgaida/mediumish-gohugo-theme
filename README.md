@@ -95,7 +95,7 @@ googleAnalytics = "UA-1XXXXXXX1-X"
 ```
 `logo`: is displayed in titlebar and alertbar\
 `description`: is displayed under title\
-`mailchimp` and `mailprotect`: provide links to a mailchimp-list and a mailchimp-protector id, the following screenshot should clarify
+`mailchimp` and `mailprotect`: provide links to a mailchimp-list and a mailchimp-protector id, the following screenshot should clarify. if not specified the alertbar for mail-subscription doesn't show up.
 
 ![mailchimp-example](https://raw.githubusercontent.com/lgaida/mediumish-gohugo-theme/master/images/mailchimp.png)
 
