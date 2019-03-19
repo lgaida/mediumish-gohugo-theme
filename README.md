@@ -127,6 +127,7 @@ You can currently provide your username from `github`, `linkedin`, `xing`, `twit
   xing = "<username>"
   medium = "<username>"
   twitter = "<username>"
+  instagram = "<username>"
 ```
 ![landingpage-params](https://raw.githubusercontent.com/lgaida/mediumish-gohugo-theme/master/images/landing.png)
 
