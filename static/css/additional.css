@@ -26,3 +26,11 @@
 .error{
     text-align: center !important;
 }
+@media(min-width: 769px){
+    .md-nopad-right{
+        padding-right: 0px !important;
+    }
+    .md-nopad-left{
+        padding-left: 0px !important;
+    }
+}
