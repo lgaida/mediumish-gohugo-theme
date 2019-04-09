@@ -9,7 +9,7 @@
 		</div>
 		<div class="col-md-8 p-5 align-self-center text-center">
 			{{ range $name, $taxonomy := .Site.Taxonomies.tags }}
-			<a href="{{ "/tags/" | relLangURL }}{{ $name | urlize }}">{{ $name }}</a>
+			<a class="mt-1 mb-1" href="{{ "/tags/" | relLangURL }}{{ $name | urlize }}">{{ $name }}</a>
 			{{ end }}
 		</div>
 	</div>
