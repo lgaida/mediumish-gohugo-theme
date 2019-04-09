@@ -20,11 +20,11 @@
                         {{if isset .Site.Params.author "name"}}
                         {{if isset .Site.Params.author "thumbnail"}}
                         {{if isset .Site.Params.author "description"}}
-                        <div class="post-top-meta">
-                            <div>
+                        <div class="row post-top-meta">
+                            <div class="col-xs-12 col-md-3 col-lg-2 text-center text-md-left mb-4 mb-md-0 md-nopad-right">
                                 <img class="author-thumb" src="{{ .Site.Params.author.thumbnail | urlize | relURL}}" alt="{{ .Site.Params.author.name }}">
                             </div>
-                            <div >
+                            <div class="col-xs-12 col-md-9 col-lg-10 text-center text-md-left md-nopad-left">
                                 <a target="_blank" class="link-dark">{{ .Site.Params.author.name }}</a><br>
                                 <span class="author-description">
                                     {{ .Site.Params.author.description }}<br>
