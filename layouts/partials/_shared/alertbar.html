@@ -1,5 +1,6 @@
 <!-- Bottom Alert Bar
 ================================================== -->
+{{ if isset .Site.Params "mailchimp" }}
 <div class="alertbar">
 	<div class="container text-center">
         <span>
@@ -19,4 +20,5 @@
         </form>
 
 	</div>
-</div> 
+</div>
+{{ end }}

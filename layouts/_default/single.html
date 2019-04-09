@@ -65,12 +65,12 @@
                     </div>
                     <!-- End Categories -->
                     
-                    <!-- Next and PrevPage -->
+                    <!-- Next and PrevPage inside current section -->
                     <div class="row PageNavigation d-flex justify-content-between font-weight-bold">
-                    {{with .NextPage}}
+                    {{with .NextInSection}}
                         <a class="d-block col-md-6" href="{{.URL}}"> &laquo; {{.Title}}</a>
                     {{end}}
-                    {{with .PrevPage}}
+                    {{with .PrevInSection}}
                         <a class="d-block col-md-6 text-lg-right" href="{{.URL}}">{{.Title}} &raquo;</a>
                     {{end}}
                     <div class="clearfix"></div>
