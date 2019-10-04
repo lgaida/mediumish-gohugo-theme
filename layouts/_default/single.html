@@ -43,11 +43,12 @@
                     </div>
 
                     <!-- Post Featured Image -->
-                    {{with .Params.image}}
-                        <img class="featured-image img-fluid" src="{{ . | urlize | relURL }}" alt="thumbnail for this post">
+                    {{$images := .Resources.ByType "image"}}
+                    {{with $images.GetMatch "*cover*" }}
+                        <img class="featured-image img-fluid" src="{{ .Permalink }}" alt="thumbnail for this post">
                     {{end}}
                     <!-- End Featured Image -->
-                    
+
                     <!-- Post Content -->
                     <div class="article-post">
                         {{ .Content}}
