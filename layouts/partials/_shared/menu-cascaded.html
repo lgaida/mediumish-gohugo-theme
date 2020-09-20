@@ -1,0 +1,22 @@
+<!-- menu-cascaded.html -->
+{{ $menuName := .menu }}
+{{ $currentPage := .current }}
+{{ $currentLevel := .level }}
+<ul class="{{ if eq $currentLevel 1 }}navbar-nav ml-auto {{ else }} navbar-menu-level-{{ $currentLevel }} {{ end }} ">
+    {{ range .pages }} 
+    <li class="nav-item {{ if $currentPage.HasMenuCurrent $menuName . }}active{{ end }}">
+        <a class="nav-link" href="{{ .URL }}">{{ .Name | title }}
+    {{ if .HasChildren }}
+        <span class="drop-icon">&#9662;</span>
+    {{ end }}
+        </a>                
+    {{ if .HasChildren }}
+        {{ partial "_shared/menu-cascaded.html" (dict "menu" $menuName "current" $currentPage "level" (add $currentLevel 1) "pages" .Children) }}
+    {{ end }}
+    </li>
+    {{ end }}
+</ul>
+
+
+
+
