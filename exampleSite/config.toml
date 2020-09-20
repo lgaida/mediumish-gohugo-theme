@@ -45,6 +45,66 @@ Currently trying to get this blog running, still don't know what the blog will b
     identifier = "blog"
     url = "/blog"
 [[menu.main]]
+    name = "Quick Nav"
+    identifier = "quicknav"
+    weight = 150
+    url = "/#"
+[[menu.main]]
+    name = "Ninth"
+    url = "/blog/ninth"
+    parent = "quicknav"
+    weight = 1
+[[menu.main]]
+    name = "Eighth"
+    url = "/blog/eighth"
+    parent = "quicknav"
+    weight = 2
+[[menu.main]]
+    name = "Seventh"
+    url = "/blog/seventh"
+    parent = "quicknav"
+    weight = 3
+[[menu.main]]
+    name = "4-6"
+    url = "#"
+    parent = "quicknav"
+    weight = 4
+[[menu.main]]
+    name = "Sixth"
+    url = "/blog/sixth"
+    parent = "4-6"
+    weight = 1
+[[menu.main]]
+    name = "Fivth"
+    url = "/blog/fivth"
+    parent = "4-6"
+    weight = 2
+[[menu.main]]
+    name = "Fourth"
+    url = "/blog/fourth"
+    parent = "4-6"
+    weight = 3
+[[menu.main]]
+    name = "1-3"
+    url = "#"
+    parent = "quicknav"
+    weight = 5
+[[menu.main]]
+    name = "Third"
+    url = "/blog/third"
+    parent = "1-3"
+    weight = 1
+[[menu.main]]
+    name = "Second"
+    url = "/blog/second"
+    parent = "1-3"
+    weight = 2
+[[menu.main]]
+    name = "First"
+    url = "/blog/my-first-post"
+    parent = "1-3"
+    weight = 3
+[[menu.main]]
     name = "About Me"
     identifier = "about"
     weight = 200
