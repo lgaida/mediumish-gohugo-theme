@@ -91,13 +91,15 @@ googleAnalytics = "UA-1XXXXXXX1-X"
 ```toml
 [params]
   logo = "/images/icon.png"
-  description ="the clean blog!"
+  description = "the clean blog!"
   mailchimp = "you can provide a mailchimp-link here, see below"
   mailprotect = "you can provide a protector-name here, see below"
+  customCSS = ["css/tweaks.css", "css/customHeader.css"]
 ```
 `logo`: is displayed in titlebar and alertbar\
 `description`: is displayed under title\
 `mailchimp` and `mailprotect`: provide links to a mailchimp-list and a mailchimp-protector id, the following screenshot should clarify. if not specified the alertbar for mail-subscription doesn't show up.
+`customCSS`: you can add paths to your own css files here to tweak and customize the css
 
 ![mailchimp-example](https://raw.githubusercontent.com/lgaida/mediumish-gohugo-theme/master/images/mailchimp.png)
 
@@ -132,7 +134,6 @@ You can currently provide your username from `github`, `linkedin`, `xing`, `twit
   instagram = "<username>"
 ```
 ![landingpage-params](https://raw.githubusercontent.com/lgaida/mediumish-gohugo-theme/master/images/landing.png)
-
 
 ## Contributing
 
