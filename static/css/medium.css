@@ -100,6 +100,38 @@ section.recent-posts {
     }
 }
 
+.drop-icon {
+  font-size: 18px;
+}
+
+.navbar-menu-level-2, .navbar-menu-level-3, .navbar-menu-level-4, .navbar-menu-level-5 {
+    list-style: none;
+    position: absolute;
+    display: none;
+    margin: 0;
+    padding-left: 10px;
+    opacity: 1;
+    line-height: 0.5em;
+    background-color: white;
+}
+
+.navbar-nav {
+    line-height: 0.4em;
+}
+
+.navbar-nav > .nav-item:hover > .navbar-menu-level-2 {
+    display: block;
+}
+.navbar-menu-level-2 > .nav-item:hover > .navbar-menu-level-3 {
+    display: block;
+}
+.navbar-menu-level-3:hover > .nav-item:hover >.navbar-menu-level-4 {
+    display: block;
+}
+.navbar-menu-level-4:hover > .nav-item:hover >.navbar-menu-level-5 {
+    display: block;
+}
+
 .listfeaturedtag {
     border: 1px solid rgba(0, 0, 0, .125);
     border-radius: .25rem;
