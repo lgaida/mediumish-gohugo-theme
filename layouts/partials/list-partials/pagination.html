@@ -2,7 +2,7 @@
 ================================================== -->
 <div class="bottompagination">
   <div class="pointerup"><i class="fa fa-caret-up"></i></div>
-  <span class="navigation" role="navigation">
+  <div class="navigation" role="navigation">
     {{ if gt .TotalPages 1 }}
       <div class="pagination">
         {{ if .HasPrev }}
@@ -22,5 +22,5 @@
         {{ end }}
       </div>
     {{ end }}
-  </span>
+  </div>
 </div>
