@@ -325,6 +325,7 @@ span.post-read-more a:hover {
 }
 
 .article-post {
+    text-align: justify;
     font-family: Merriweather;
     font-size: 1.1rem;
     line-height: 1.84;
