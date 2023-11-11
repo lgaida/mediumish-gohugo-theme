@@ -22,7 +22,7 @@
             {{ $currentPage := . }}
             <ul class="navbar-nav ml-auto">
                 {{ range .Site.Menus.main }} 
-                <li class="nav-item {{ if $currentPage.HasMenuCurrent "main" . }}active{{ end }}">
+                <li class="nav-item {{ if or ($currentPage.IsMenuCurrent "main" .) ($currentPage.HasMenuCurrent "main" .) }}active{{ end }}">
                     <a class="nav-link" href="{{ .URL }}">{{ .Name | title }}</a>
                 </li>
                 {{ end }}

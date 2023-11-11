@@ -1,0 +1,15 @@
+<!-- begin author -->
+<div class="row" id="{{ .Data.Term }}">
+    <div class="col-md-2">
+        <img class="author-thumb-big" src="/images/authors/{{ .Data.Term }}.jpg" alt="{{ .Params.name }}"/>
+    </div>
+    <div class="col-md-10">
+        <div class="mainheading author">
+            <p class="h2">{{ .Params.name }}</p>
+            <div class="article-post">
+                {{ .Content}}
+            </div>
+        </div>
+    </div>
+</div>
+<!-- end author -->

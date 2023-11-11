@@ -1,0 +1,13 @@
+{{ .Scratch.Set "author" (default "anonymous" .Site.Params.author.name) | urlize }}
+{{ .Scratch.Set "authorName" (default "Anonymous" .Site.Params.author.name) }}
+{{ .Scratch.Set "authorThumb" (default "/images/anonymous.jpg" .Site.Params.author.thumbnail) }}
+{{ .Scratch.Set "authorDescription" (default "Author" .Site.Params.author.description) }}
+{{ if isset .Params "author" }}
+    {{ $.Scratch.Set "author" .Params.author | urlize }}
+    {{ $authorPage := printf "/authors/%s" (.Params.author | urlize) }}
+    {{ with .Site.GetPage $authorPage }}
+        {{ $.Scratch.Set "authorName" .Params.name }}
+        {{ $.Scratch.Set "authorThumb" (default (printf "/images/%s.jpg" ($.Scratch.Get "author")) .Params.thumbnail) }}
+        {{ $.Scratch.Set "authorDescription" (default "Author" .Params.description) }}
+    {{ end }}
+{{ end }}

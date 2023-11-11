@@ -9,6 +9,7 @@
 	{{ with .Site.Params.meta.description }}<meta name="description" content="{{ . }}">{{ end }}
 	{{ with .Site.Params.meta.keywords }}<meta name="keywords" content="{{ . }}">{{ end }}
 
+	{{ partial "_shared/favicons.html" }}
 	{{ template "_internal/twitter_cards.html" . }}
 	{{ template "_internal/opengraph.html" . }}
 

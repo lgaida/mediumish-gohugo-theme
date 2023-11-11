@@ -1,3 +1,4 @@
+{{ if default true (default .Site.Params.showTitles) }}
 <!-- Site Title
 ================================================== -->
 <div class="mainheading">
@@ -6,3 +7,4 @@
          {{ .Site.Params.Description }}
     </p>
 </div>
+{{ end }}
