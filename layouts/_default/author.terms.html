@@ -3,21 +3,20 @@
 {{ end }}
 
 {{ define "main" }}
+    {{- partial "_shared/title.html" . -}}
     <div class="main-content">
-        <div class="container">
-            <div class="row">
-                <div class="col-md-12">
-                    <!-- Post Title -->
-                    <h1 class="posttitle">{{ .Title }}</h1>
-                    <div class="article-post">
-                        {{ .Content}}
-                    </div>
-                </div>
+        <!-- Authors Index
+        ================================================== -->
+        <section class="recent-posts">
+            <div class="section-title">
+                <h2><span>{{ default "Authors" .Title }}</span></h2>
             </div>
-            {{ range .Data.Pages }}
-                {{- partial "list-partials/author.html" . -}}
-            {{end}}
-        </div>
+            <div class="row listrecent">
+                {{ range .Data.Pages }}
+                    {{- partial "list-partials/author.html" . -}}
+                {{end}}
+            </div>
+        </section>
     </div>
     {{- partial "_shared/alertbar.html" . -}}
 {{ end }}

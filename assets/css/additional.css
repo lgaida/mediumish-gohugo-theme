@@ -4,7 +4,7 @@
 }
 .index-sub{
     color: rgba(0,0,0,.54);
-
+    
 }
 .index-text{
     margin-top:20px;
@@ -17,9 +17,7 @@
     color: rgba(0,0,0,.44);
     font-size:1.5rem;
 }
-.clock{
-    margin-left: 25px;
-}
+
 .jumbotron.fortags a {
     background: #1C9963 !important;
 }
@@ -33,4 +31,36 @@
     .md-nopad-left{
         padding-left: 0px !important;
     }
+}
+
+.row.post-top-meta {
+    padding-bottom: 1.5rem;
+    border-bottom: 1px solid #f0f0f0;
+}
+
+.row.post-top-meta.authorpage .author-thumb {
+    margin-top: 40px;
+    height: 144px;
+    width: 144px;
+}
+
+table {
+    font-family: -apple-system, system-ui, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+    font-size: 0.9rem;
+    margin: 1rem 0 1.2rem 0;
+}
+
+td, th {
+    font-weight: 400;
+    line-height: 1.3rem;
+    vertical-align: top;
+}
+
+th {
+    font-weight: 600;
+    padding: 0.5em 1rem 0.6rem 0;
+}
+
+td {
+    padding: 0.5rem 1rem 0.6rem 0;
 }

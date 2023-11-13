@@ -1,11 +1,12 @@
 <!-- begin author -->
-<div class="row" id="{{ .Data.Term }}">
-    <div class="col-md-2">
-        <img class="author-thumb-big" src="/images/authors/{{ .Data.Term }}.jpg" alt="{{ .Params.name }}"/>
+<div class="row post-top-meta authorpage" id="{{ .Data.Term }}">
+    <div class="mx-auto mt-0">
+        <img class="author-thumb" src='{{ default (printf "/images/%s.jpg" .Data.Term) .Params.thumbnail }}' alt="{{ .Params.name }}"/>
     </div>
-    <div class="col-md-10">
+    <div class="col-md-9"> 
         <div class="mainheading author">
-            <p class="h2">{{ .Params.name }}</p>
+            <h2 class="py-2">{{ .Params.name }}</h2>
+            <h3 class="pb-2">{{ .Params.description }}</h3>
             <div class="article-post">
                 {{ .Content}}
             </div>

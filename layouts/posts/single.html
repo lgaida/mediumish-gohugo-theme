@@ -15,15 +15,15 @@
                 </div>
                 <!-- Post -->                
                 <div class="col-md-9 flex-first flex-md-unordered">
-                    <div class="mainheading bottom-border">
+                    <div class="mainheading">
                         <!-- Post Title -->
                         <h1 class="posttitle">{{ .Title }}</h1> 
                         <!-- Post Description -->
-                        <h2 class="description">{{ .Description }}</h1>
+                        <h2 class="article-post post-top-meta">{{ .Description }}</h2>
                         <!-- Author Box -->
                         {{- partial "_shared/postmeta.html" . -}}
                         <div class="row post-top-meta">
-                            <div>
+                            <div class="pl-3 pr-3">
                                 <img class="author-thumb" src='{{ .Scratch.Get "authorThumb" }}' alt='{{ .Scratch.Get "authorName" }}'/>
                             </div>
                             <div class="author-description">
