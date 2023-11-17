@@ -22,8 +22,8 @@
                         <h2 class="article-post post-top-meta">{{ .Description }}</h2>
                         <!-- Author Box -->
                         {{- partial "_shared/postmeta.html" . -}}
-                        <div class="row post-top-meta">
-                            <div class="pl-3 pr-3">
+                        <div class="post-top-meta">
+                            <div class="pr-3">
                                 <img class="author-thumb" src='{{ .Scratch.Get "authorThumb" }}' alt='{{ .Scratch.Get "authorName" }}'/>
                             </div>
                             <div class="author-description">
