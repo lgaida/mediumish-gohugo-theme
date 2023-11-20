@@ -44,6 +44,10 @@
     width: 144px;
 }
 
+.article-post {
+    text-align: left;
+}
+
 table {
     font-family: -apple-system, system-ui, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
     font-size: 0.9rem;

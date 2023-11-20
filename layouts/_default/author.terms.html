@@ -11,7 +11,7 @@
             <div class="section-title">
                 <h2><span>{{ default "Authors" .Title }}</span></h2>
             </div>
-            <div class="row listrecent">
+            <div class="listrecent">
                 {{ range .Data.Pages }}
                     {{- partial "list-partials/author.html" . -}}
                 {{end}}
