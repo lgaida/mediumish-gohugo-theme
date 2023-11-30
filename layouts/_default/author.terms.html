@@ -11,8 +11,11 @@
             <div class="section-title">
                 <h2><span>{{ default "Authors" .Title }}</span></h2>
             </div>
+            <div content="container">
+                {{ .Content }}
+            </div>
             <div class="container listrecent">
-                {{ range .Data.Pages }}
+                {{ range sort .Data.Pages ".Weight" }}
                     {{- partial "list-partials/author.html" . -}}
                 {{end}}
             </div>

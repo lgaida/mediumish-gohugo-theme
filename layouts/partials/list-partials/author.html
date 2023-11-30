@@ -2,12 +2,23 @@
 <div class="row post-top-meta authorpage" id="{{ .Data.Term }}">
     <div class="mx-auto mt-0">
         <img class="author-thumb" src='{{ default (printf "/images/%s.jpg" .Data.Term) .Params.thumbnail }}' alt="{{ .Params.name }}"/>
+        <section class="p-4 text-center">
+            {{ if isset .Params "linkedin" }}
+                <a class="px-1" target='_blank' href='https://linkedin.com/in/{{ .Params.linkedin }}'><i class="fab fa-linkedin"></i></a>
+            {{ end }}
+            {{ if isset .Params "twitter" }}
+                <a class="px-1" target='_blank' href='https://twitter.com/{{ .Params.twitter }}'><i class="fab fa-twitter"></i></a>
+            {{ end }}
+            {{ if isset .Params "email" }}
+                <a class="px-1" target='_blank' href='mailto:{{ .Params.email }}'><i class="fa fa-envelope"></i></a>
+            {{ end }}
+        </section>
     </div>
     <div class="col-md-9"> 
         <div class="mainheading author">
             <h2 class="py-2">{{ .Params.name }}</h2>
             <h3 class="pb-2">{{ .Params.description }}</h3>
-            <div class="article-post">
+            <div>
                 {{ .Content}}
             </div>
         </div>
