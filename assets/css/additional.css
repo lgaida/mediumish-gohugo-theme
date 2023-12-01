@@ -90,3 +90,7 @@ figcaption h4 {
     padding: 0 0 0.5rem 0;
     margin: 0;
 }
+
+a.navbar-brand img {
+    max-height: 30px;
+}
