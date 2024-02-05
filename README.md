@@ -1,3 +1,10 @@
+### Deprecation-Note
+**I will not take a look at this personally anymore. You can still use this theme and customize it.** 
+
+A few people have been using this theme and i really enjoyed the engagement through issues & pull-requests eventhough i didn't feel the need to merge the larger pull-requests since i never actually used the theme for a blog on my own.
+
+Please take a look at the repos [network](https://github.com/lgaida/mediumish-gohugo-theme/network) and/or the [forks](https://github.com/lgaida/mediumish-gohugo-theme/forks) to get some ideas how other people have customized this theme even further.
+
 # Mediumish Theme
 
 This theme for gohugo is a customized port based on the [Mediumish Jekyll-Theme](//github.com/wowthemesnet/mediumish-theme-jekyll) by [WowThemesNet](//github.com/wowthemesnet). The original theme ships with a few more features than this ported version but i also added features which the original version did not include.
