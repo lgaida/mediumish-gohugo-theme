@@ -65,6 +65,11 @@
                         </ul>
                     </div>
                     <!-- End Categories -->
+
+                    <!-- Comments -->
+                    {{ if .Params.comments }}
+                        {{- partial "single-partials/comments.html" . -}}
+                    {{ end }}
                     
                     <!-- Next and PrevPage inside current section -->
                     <div class="row PageNavigation d-flex justify-content-between font-weight-bold">
@@ -83,9 +88,6 @@
         </div>
         <!-- End Article
         ================================================== -->
-        {{ if .Params.comments }}
-            {{- partial "single-partials/comments.html" . -}}
-        {{ end }}
     </div>
     {{- partial "_shared/alertbar.html" . -}}
 {{ end }}
