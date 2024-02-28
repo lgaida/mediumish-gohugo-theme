@@ -1,5 +1,5 @@
 <!-- Carousel -->
-<div id="homepageCarousel" class="carousel slide carousel-fade" data-bs-ride="carousel"  data-wrap="false" data-bs-interval="5000">
+<div id="homepageCarousel" class="carousel slide carousel-fade" data-ride="carousel"  data-wrap="false" data-interval="5000">
     <div class="carousel-indicators">
     {{ range $index, $val := .Site.Data.carousel }}
         <button type="button" data-bs-target="#homepageCarousel" data-bs-slide-to="{{ $index }}"{{ if not $index }} class="active"{{ end }}></button>
