@@ -1,0 +1,40 @@
+{{- partial "_shared/postmeta.html" . -}}
+<article data-permalink="{{ .RelPermalink }}">
+    <div class="col">
+        <div class="card">
+            <div class="card-header">
+                <a href="{{ .Permalink }}">
+                    {{if isset .Params "image"}}
+                    <img class="card-img-top rounded-0" src="{{ .Params.Image | relURL }}" alt="A thumbnail image">
+                    {{ end }}
+                    {{$images := .Resources.ByType "image"}}
+                    {{with $images.GetMatch "*cover*" }}
+                    <img class="card-img-top rounded-0" src="{{ .Permalink }}" alt="A thumbnail image">
+                    {{end}}
+                </a>
+            </div>
+            <div class="card-body">
+                <div class="author-thumb-small d-flex">
+                    <a href='/authors/index.html#{{ .Scratch.Get "author" }}'>
+                        <img src='{{ .Scratch.Get "authorThumb" }}' alt='{{ .Scratch.Get "authorName" }}'/>
+                    </a>
+                    <div class="author-name">
+                        <a class="text-dark" href='/authors/index.html#{{ .Scratch.Get "author" }}'>{{ .Scratch.Get "authorName" }}</a>
+                    </div>
+                </div>
+                <div class="card-title">
+                    <a href="{{ .Permalink }}" class="text-dark">{{ .Title }}</a>
+                </div>
+                <div class="card-text">{{ .Summary }}</div>
+            </div>
+            <div class="card-footer d-flex justify-content-between">
+                <div>{{ .ReadingTime }} min read &#8729; {{ dateFormat (default "Jan 2, 2006" .Site.Params.dateFormat) .PublishDate }}</div>
+                <div data-toggle="tooltip" data-placement="top" title="Save" style="margin-top: -4px;">
+                    <svg width="25" height="25" viewBox="0 0 25 25" fill="none" class="dt mo" aria-label="Add to list bookmark button">
+                        <path d="M18 2.5a.5.5 0 0 1 1 0V5h2.5a.5.5 0 0 1 0 1H19v2.5a.5.5 0 1 1-1 0V6h-2.5a.5.5 0 0 1 0-1H18V2.5zM7 7a1 1 0 0 1 1-1h3.5a.5.5 0 0 0 0-1H8a2 2 0 0 0-2 2v14a.5.5 0 0 0 .8.4l5.7-4.4 5.7 4.4a.5.5 0 0 0 .8-.4v-8.5a.5.5 0 0 0-1 0v7.48l-5.2-4a.5.5 0 0 0-.6 0l-5.2 4V7z" fill="currentColor"></path>
+                    </svg>
+                </div>
+            </div>
+        </div>
+    </div>
+</article>

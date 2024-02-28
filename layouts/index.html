@@ -3,31 +3,37 @@
 {{ end }}
 
 {{ define "main" }}
-    <div class="main-content">
-        <header class="text-center">
-            {{ with .Site.Params.index.picture }}
-                <img src="{{ . | urlize | relURL }}" class="rounded-circle text-center index-image">
-            {{ end }}
-            <h1 class="index-title">{{ .Site.Params.index.title }}</h1>
-        </header>
-
-        <section class="text-center">
-            {{ with .Site.Params.index.subtitle }}
-            <h3 class="index-sub">{{ . }}</h3>
-            {{ end }}
-            {{ with .Site.Params.index.mdtext }}
-            <h6 class="index-text">{{ . | markdownify }}</h6>
-            {{ end }}
-        </section>
-    </div>
-    {{- partial "_shared/social.html" . -}}
-    {{ if isset .Site.Params.index "alertbar" }}
-    	{{ if .Site.Params.index.alertbar }}
-            {{- partial "_shared/alertbar.html" . -}}
+    <!-- Begin Homepage
+    ================================================== -->
+    <div class="homepage main-content">
+        {{ if .Site.Data.carousel }}
+        <div class="row">
+            <div class="col">
+                {{- partial "_shared/carousel.html" . -}}
+            </div>
+        </div>
         {{ end }}
-    {{ end }}
-{{end}}
+        <div class="row">
+            <div class="col col-8">
+                <div class="sticky-top">
+                    <!-- Page Content -->
+                    {{ .Content }}
+                </div>
+            </div>
+            <div class="col col-4">
+                <h1 class="featured-heading">Featured Content</h1>
+                {{ range $index, $val := (where .Site.Pages "Params.Featured" "==" true)}}
+                    {{ .Scratch.Set "index" $index }}
+                    {{- partial "list-partials/feature-card.html" . -}}
+                {{end}}
+            </div>
+        </div>
+    </div>
+    <!-- End Homepage
+        ================================================== -->
+        {{- partial "_shared/alertbar.html" . -}}
+{{ end }}
 
-{{ define "footer" }}
+{{ define "footer"}}
     {{- partial "_shared/footer.html" . -}}
-{{end}}
+{{ end }}

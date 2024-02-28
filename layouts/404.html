@@ -3,23 +3,27 @@
 {{ end }}
 
 {{ define "main" }}
-<div class="main-content">
+<!-- Begin Page
+    ================================================== -->
     <div class="container">
-        <div class="row">
-            <div class="col-md-1"></div>
-            <div class="col-md-10 error">
-                <div class="mainheading">
-                    <h1 class="posttitle">{{ .Title }}</h1> 
-                </div>
-                <div class="article-post">
-                    Oops! This is obviously not what you are looking for.<br>
-                    Click <a href="/">here</a> to start all over again.                
+        <section>
+            <div class="container d-flex justify-content-center">
+                <div class="main-content post-width">
+                    <!-- Page Title -->
+                    <div class="page-meta">
+                        <h1>{{ .Title }}</h1>
+                    </div>
+                    <!-- Page Content -->
+                    <div content="container error">
+                        Oops! This is obviously not what you are looking for.<br>
+                        Click <a href="/">here</a> to start all over again.
+                    </div>
                 </div>
             </div>
-            <div class="col-md-1"></div>
-        </div>
+        </section>
     </div>
-</div>
+    <!-- End Page
+        ================================================== -->
 {{ end }}
 
 {{ define "footer"}}

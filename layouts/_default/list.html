@@ -4,22 +4,33 @@
 
 {{ define "main" }}
     {{- partial "_shared/title.html" . -}}
-    <div class="main-content">
-        <!-- Posts Index
-        ================================================== -->
-        <section class="recent-posts">            
-            <div class="section-title">                
-                <h2><span>All Posts</span></h2>                
-            </div>            
-            <div class="row listrecent">
-                {{ $post_paginator := .Paginate (.Pages) 6 }}
-                {{ range $post_paginator.Pages }}
-                    {{- partial "list-partials/postbox.html" . -}}
-                {{end}}
+    <!-- Begin Index
+    ================================================== -->
+    <div class="container">
+        <section>
+            <div class="container d-flex justify-content-center">
+                <div class="main-content post-width">
+                    <!-- Page Title -->
+                    <div class="page-meta">
+                        <h1 class="text-capitalize">{{ .Title }}</h1>
+                    </div>
+                    <!-- Page Content -->
+                    <div content="container">
+                        {{ .Content }}
+                    </div>
+                    <div class="row row-cols-1 row-cols-md-2 g-4 mt-3">
+                        {{ $post_paginator := .Paginate (.Pages) 6 }}
+                        {{ range $post_paginator.Pages }}
+                            {{- partial "list-partials/postcard.html" . -}}
+                        {{ end }}
+                    </div>
+                    {{- partial "list-partials/pagination.html" $post_paginator -}}
+                </div>
             </div>
         </section>
-        {{- partial "list-partials/pagination.html" $post_paginator -}}
     </div>
+    <!-- End Index
+        ================================================== -->
     {{- partial "_shared/alertbar.html" . -}}
 {{ end }}
 

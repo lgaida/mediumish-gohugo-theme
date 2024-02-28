@@ -10,3 +10,12 @@
 
 {{ $mediumish := resources.Get "/js/mediumish.js" | resources.Fingerprint }}
 <script src="{{ $mediumish.RelPermalink | absURL }}" integrity="{{ $mediumish.Data.Integrity }}"></script>
+
+{{ if isset .Site.Params.Disqus "api_key" }}
+<script>
+    jQuery(document).ready(function($){
+        // Refresh Disqus comments and likes counts
+        refreshDisqusCounts('{{ .Site.Params.Disqus.api_key }}', '{{ .Site.Config.Services.Disqus.Shortname }}', {{ .Permalink | safeHTML }});
+    });
+</script>
+{{ end }}

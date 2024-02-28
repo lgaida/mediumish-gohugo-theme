@@ -1,16 +1,12 @@
-<!-- Categories Jumbotron
+<!--  Jumbotron tags
 ================================================== -->
-<div class="jumbotron fortags">
-	<div class="d-md-flex h-100">
-		<div class="col-md-4 transpdark align-self-center text-center h-100">
-			<div class="d-md-flex align-items-center justify-content-center h-100">
-				<h2 class="d-md-block d-none align-self-center py-1 font-weight-light">Explore <span class="d-none d-md-inline">→</span></h2>
-			</div>
-		</div>
-		<div class="col-md-8 p-5 align-self-center text-center">
-			{{ range $name, $taxonomy := .Site.Taxonomies.tags }}
-			<a class="mt-1 mb-1" href="{{ "/tags/" | relLangURL }}{{ $name | urlize }}">{{ $name }}</a>
-			{{ end }}
-		</div>
+<div class="jumbotron fortags d-md-flex h-100">
+	<div class="jumbotron-explore col-md-4 d-flex flex-column align-items-center justify-content-center">
+		<div class="d-none d-md-inline">Explore <span class="">→</span></div>
+	</div>
+	<div class="col-md-8 p-5 align-self-center text-center">
+		{{ range $name, $taxonomy := .Site.Taxonomies.tags }}
+		<a class="badge rounded-pill text-capitalize" href="{{ "/tags/" | relLangURL }}{{ $name | urlize }}">{{ $name }}</a>
+		{{ end }}
 	</div>
 </div>

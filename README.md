@@ -90,14 +90,10 @@ title = "Mediumish"
 theme = "mediumish-gohugo-theme"
 summaryLength = 25
 copyright = "John Doe - All rights reserved"
-disqusShortname = "shortDisquis"
-googleAnalytics = "G-XXXXXXXXXX"
 ```
 `title`: is displayed on the postlist and on each post as the title\
 `summaryLength`: feel free to play around with this\
 `copyright`: is displayed in the footer next to the copyright-logo\
-`disqusShortname`: provide your disqusShortname\
-`googleAnalytics`: provide your googleAnalytics-Code
 
 ### General Params
 ```toml
@@ -109,13 +105,23 @@ googleAnalytics = "G-XXXXXXXXXX"
   mailchimp = "you can provide a mailchimp-link here, see below"
   mailprotect = "you can provide a protector-name here, see below"
   customCSS = ["css/tweaks.css", "css/customHeader.css"]
+  [params.disqus]
+    api_key = "your Disqus API key"
+[services]
+  [services.disqus]
+    shortname = "shortDisqus"
+  [services.googleAnalytics]
+    ID = "G-XXXXXXXXXX"
 ```
 `logo`: is displayed in titlebar and alertbar\
 `description`: is displayed under title\
 `showTitles`: whether the `title` is rendered; the default is `true`\
 `dateFormat`: the format for displaying dates on posts anad post cards; the default is "Jan 2, 2006"\
 `mailchimp` and `mailprotect`: provide links to a mailchimp-list and a mailchimp-protector id, the following screenshot should clarify. if not specified the alertbar for mail-subscription doesn't show up.
-`customCSS`: you can add paths to your own css files here to tweak and customize the css
+`customCSS`: you can add paths to your own css files here to tweak and customize the css\
+`disqus > api_key`: if you have registered your app with Disqus and have obtained an API key, you can retrieve the number of likes and comments and displey them on your posts\
+`services > disqus > shortname`: provide your disqusShortname\
+`services > googleAnalytics > ID`: provide your Google Analytics code
 
 ![mailchimp-example](https://raw.githubusercontent.com/lgaida/mediumish-gohugo-theme/master/images/mailchimp.png)
 
@@ -170,13 +176,14 @@ Posts containing an `author` front matter field display the name, thumbnail, and
 ```
 You can currently provide your username from `github`, `linkedin`, `xing`, `twitter`, `medium`. They will be displayed as icons on the landingpage.
 ```toml
-[params.social]
-  github = "<username>"
-  linkedin = "<username>"
-  xing = "<username>"
-  medium = "<username>"
-  twitter = "<username>"
-  instagram = "<username>"
+[params]
+  [params.social]
+    github = "<username>"
+    linkedin = "<username>"
+    xing = "<username>"
+    medium = "<username>"
+    twitter = "<username>"
+    instagram = "<username>"
 ```
 ![landingpage-params](https://raw.githubusercontent.com/lgaida/mediumish-gohugo-theme/master/images/landing.png)
 
@@ -197,6 +204,22 @@ If you need to use __custom CSS__, you can add the CSS file to your `assets/css`
     params:
       customcss:
         - /css/my-custom-css.css
+
+The Medium website displays the number of "claps" and comments each posts receives. If you have supplied your Disqus API key in the configuration above, the Mediumish theme will simulate this using the [Disqus API](https://help.disqus.com/en/articles/1717086-available-public-api-data), following the general strategy outlined in [this article](https://stackoverflow.com/questions/16243972/showing-disqus-comment-count-in-a-div-or-span-not-a-href). A tiny snippet of JavaScript obtains the number of likes and comments by making a GET call to the Disqus method `threads/details.jsonp`, which returns a JSON object that looks like this (additional attributes omitted for brevity):
+
+    {"code":0,
+     "response":{
+         "id":"12289588930",
+         "forum":"shortDisqus",
+         "title":"A Picture is Worth 1,000 Words",
+         "link":"http://yourdomain.com/posts/picture.worth.1000.words/",
+         "posts":0, // The number of comments
+         "likes":0} // The number of likes
+    }
+
+The script then injects these values into elements with the IDs `#disqus-comments-count` and `disqus-likes-count`, respectively. Note that the Disqus free plan limits the number of API calls to 1,000 per hour, whichs is probably fine for low-volume personal sites.
+
+[This page](https://github.com/bradvin/social-share-urls) maintains a list of up-to-date social media sharing URLs.
 
 ## Contributing
 

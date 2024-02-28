@@ -1,12 +1,16 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="{{ .Site.LanguageCode }}">
     {{- partial "_shared/head.html" . -}}
     <body>
-        {{- block "header" . }}{{- end }}
-        <div class="site-content">   
+        <div class="header-content">
+            {{- block "header" . }}{{- end }}
+        </div>
+        <div class="site-content">
             <div class="container">
                 {{- block "main" . }}{{- end }}
             </div>
+        </div>
+        <div class="footer-content">
             {{- block "footer" . }}{{- end }}
         </div>
         {{- partial "_shared/js.html" . -}}

@@ -3,27 +3,28 @@
 {{ end }}
 
 {{ define "main" }}
-<div class="main-content">
-<!-- Begin standalone
-================================================== -->
-<div class="container">
-	<div class="row">
-        <div class="col-md-1"></div>
-		<div class="col-md-10">
-			<div class="mainheading">
-				<h1 class="posttitle">{{ .Title }}</h1> 
+<!-- Begin Standalone
+    ================================================== -->
+    <div class="container">
+        <section>
+            <div class="container d-flex justify-content-center">
+                <div class="main-content post-width">
+                    <!-- Page Title -->
+                    <div class="page-meta">
+                        <h1>{{ .Title }}</h1>
+                    </div>
+                    <!-- Page Content -->
+                    <div content="container">
+                        {{ .Content }}
+                    </div>
+                </div>
             </div>
-			<div class="article-post">
-				{{ .Content }}
-			</div>
-		</div>
-        <div class="col-md-1"></div>
-	</div>
-</div>
-<!-- End standalone
-================================================== -->
-</div>
-{{- partial "_shared/alertbar.html" . -}}
+        </section>
+    </div>
+    <!-- End Standalone
+        ================================================== -->
+{{ end }}
+    {{- partial "_shared/alertbar.html" . -}}
 {{ end }}
 
 {{ define "footer"}}
