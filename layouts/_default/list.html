@@ -19,13 +19,13 @@
                         {{ .Content }}
                     </div>
                     <div class="row row-cols-1 row-cols-md-2 g-4 mt-3">
-                         {{ with $post_paginator }}
+                        {{ $post_paginator := .Paginate (.Pages) 6 }}
+                        {{ with $post_paginator }}
                             {{ range .Pages }}
                                 {{- partial "list-partials/postcard.html" . -}}
                             {{ end }}
                         {{ end }}
                     </div>
-                    {{- partial "list-partials/pagination.html" $post_paginator -}}
                 </div>
             </div>
         </section>
