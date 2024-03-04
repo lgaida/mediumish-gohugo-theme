@@ -1,12 +1,12 @@
 <!--  Jumbotron tags
 ================================================== -->
-<div class="jumbotron fortags d-md-flex h-100">
-	<div class="jumbotron-explore col-md-4 d-flex flex-column align-items-center justify-content-center">
+<aside class="jumbotron fortags d-md-flex h-100">
+	<div class="jumbotron-explore col-md-4 d-flex align-items-center justify-content-center">
 		<div class="d-none d-md-inline">Explore <span class="">→</span></div>
 	</div>
 	<div class="col-md-8 p-5 align-self-center text-center">
 		{{ range $name, $taxonomy := .Site.Taxonomies.tags }}
-		<a class="badge rounded-pill text-capitalize" href="{{ "/tags/" | relLangURL }}{{ $name | urlize }}">{{ $name }}</a>
+		<a class="badge rounded-pill text-capitalize text-decoration-none" href="{{ "/tags/" | relLangURL }}{{ $name | urlize }}">{{ $name }}</a>
 		{{ end }}
 	</div>
-</div>
+</aside>

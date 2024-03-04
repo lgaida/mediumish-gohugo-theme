@@ -1,0 +1,15 @@
+{{ $currentPage := . }}
+<aside class="more-from d-flex justify-content-center">
+    <section>
+        <h2>More from {{ .Site.Title }}</h2>
+        <div class="row row-cols-1 row-cols-md-2 gx-4 gy-0">
+            {{ range (where .Site.Pages "Params.Featured" "==" true)  }}
+                {{ if not (.Eq $currentPage) }}
+            <div class="col">
+                    {{- partial "list-partials/postcard.html" . -}}
+            </div>
+                {{end}}
+            {{end}}
+        </div>
+    </section>
+</aside>

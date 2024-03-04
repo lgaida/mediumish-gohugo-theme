@@ -3,45 +3,31 @@
 {{ end }}
 
 {{ define "main" }}
-    {{- partial "_shared/title.html" . -}}
     <!-- Begin Page
     ================================================== -->
-    <div class="container">
-        <section>
-            <div class="container d-flex justify-content-center">
-                <div class="main-content post-width">
-                    <!-- Page Title -->
-                    <div class="page-meta">
-                        <h1>{{ default "Authors" .Title }}</h1>
-                    </div>
-                    <!-- Page Content -->
-                    <div content="container">
-                        {{ .Content }}
-                    </div>
-                    <div class="container">
-                        {{ range sort .Data.Pages ".Weight" }}
-                            {{- partial "list-partials/author.html" . -}}
-                        {{end}}
-                    </div>
-                </div>
-            </div>
-        </section>
-    </div>
+    <section>
+        <header>
+            {{- partial "_shared/title.html" . -}}
+        </header>
+        <!-- Page Content -->
+        <div>
+            {{ .Content }}
+        </div>
+        <div>
+            {{ range sort .Data.Pages ".Weight" }}
+                {{- partial "list-partials/author.html" . -}}
+            {{end}}
+        </div>
+    </section>
     <!-- End Page
     ================================================== -->
     {{- partial "_shared/alertbar.html" . -}}
 {{ end }}
 
+{{ define "aside" }}
+    {{- partial "_shared/morefrom.html" . -}}
+{{ end }}
+
 {{ define "footer"}}
-    <div class="more-from container d-flex justify-content-center">
-        <div class="main-content post-width">
-            <h2>More from {{ .Site.Title }}</h2>
-            <div class="row row-cols-1 row-cols-md-2 gx-4 gy-0">
-                {{ range (where .Site.Pages "Params.Featured" "==" true) }}
-                    {{- partial "list-partials/postcard.html" . -}}
-                {{end}}
-            </div>
-        </div>
-    </div>
     {{- partial "_shared/footer.html" . -}}
 {{ end }}

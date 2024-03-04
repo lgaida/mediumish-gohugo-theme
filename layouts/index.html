@@ -5,7 +5,7 @@
 {{ define "main" }}
     <!-- Begin Homepage
     ================================================== -->
-    <div class="homepage main-content">
+    <section>
         {{ if .Site.Data.carousel }}
         <div class="row">
             <div class="col">
@@ -13,22 +13,26 @@
             </div>
         </div>
         {{ end }}
-        <div class="row">
+        <div class="row container">
             <div class="col col-8">
                 <div class="sticky-top">
                     <!-- Page Content -->
                     {{ .Content }}
                 </div>
             </div>
-            <div class="col col-4">
-                <h1 class="featured-heading">Featured Content</h1>
+            <aside class="featured col col-4">
+                <h1>Featured Content</h1>
                 {{ range $index, $val := (where .Site.Pages "Params.Featured" "==" true)}}
-                    {{ .Scratch.Set "index" $index }}
-                    {{- partial "list-partials/feature-card.html" . -}}
+                    <div class="d-flex align-items-start">
+                        <div class="idx">
+                            {{ add $index 1 | printf "%02d" }}
+                        </div>
+                        {{- partial "list-partials/postcard.html" . -}}
+                    </div>
                 {{end}}
-            </div>
+            </aside>
         </div>
-    </div>
+    </section>
     <!-- End Homepage
         ================================================== -->
         {{- partial "_shared/alertbar.html" . -}}

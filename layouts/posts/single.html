@@ -3,117 +3,90 @@
 {{ end }}
 
 {{ define "main" }}
-    {{- partial "_shared/title.html" . -}}
-    <!-- Begin Post
+<!-- Begin Post
     ================================================== -->
     <article data-permalink="{{ .RelPermalink }}">
-        <div class="container">
-            <section>
-                <div class="container d-flex justify-content-center">
-                    <div class="main-content post-width">
-                        <div class="post-meta">
-                            <!-- Post Title -->
-                            <div class="post-title">{{ .Title }}</div>
-                            <!-- Post Summary -->
-                            <div class="post-summary">{{ .Summary }}</div>
-                            <!-- Author Box -->
-                            {{- partial "_shared/postmeta.html" . -}}
-                            <div class="d-flex align-items-center">
-                                <div class="author-thumb-medium d-flex">
-                                    <a href='/authors/index.html#{{ .Scratch.Get "author" }}'>
-                                        <img src='{{ .Scratch.Get "authorThumb" }}' alt='{{ .Scratch.Get "authorName" }}'/>
-                                    </a>
-                                    {{ $author := (default "anonymous" .Params.Author) }}
-                                </div>
-                                <div>
-                                    <div class="author-name">
-                                        <a class="text-dark" href='/authors/index.html#{{ .Scratch.Get "author" }}'>{{ .Scratch.Get "authorName" }}</a>
-                                        {{ $authorPage := printf "/authors/%s" (.Params.author | urlize) }}
-                                        {{ with .Site.GetPage $authorPage }}
-                                            {{ if isset .Params "linkedin" }}
-                                            &#8729; <a href="https://linkedin.com/in/{{ .Params.linkedin }}"  data-toggle="tooltip" data-placement="top" title="Follow on LinkedIn">Follow</a>
-                                            {{ end }}
-                                        {{ end }}
-                                    </div>
-                                    <div class="post-date">
-                                        Published in
-                                        {{ range $key, $value := .Params.tags }}
-                                            <a class="text-capitalize text-dark" href="/tags/{{ $value | urlize }}">{{ $value }}</a>{{ if ne $key (sub (len $.Params.tags) 1) }}, {{ else }}{{ end }}
-                                        {{ end }}
-                                        &#8729;
-                                        {{ .ReadingTime }} min read
-                                        &#8729;
-                                        {{ dateFormat (default "Jan 2, 2006" .Site.Params.dateFormat) .PublishDate }}
-                                    </div>
-                                </div>
-                            </div>
-                            <!-- Post Share -->
-                            {{- partial "single-partials/share.html" . -}}
-                        </div>
-
-                        <!-- Post Featured Image -->
-                        {{$images := .Resources.ByType "image"}}
-                        {{with $images.GetMatch "*cover*" }}
-                            <img class="featured-image img-fluid" src="{{ .Permalink }}" alt="thumbnail for this post">
-                        {{end}}
-                        <!-- End Featured Image -->
-
-                        <!-- Post Content -->
-                        <div class="post-article end-cap">
-                            {{ $content := .Content }}
-                            {{ $content | replaceRE `(?s)</p>\s*$` "&nbsp;<span class=\"end-cap\">&nbsp;</span></p>" | safeHTML }}
-                        </div>
-
-                        <!-- Post Categories -->
-                        <div class="after-post-tags">
-                            {{ range .Params.tags }}
-                            <a class="badge rounded-pill text-capitalize" href="{{ "/tags/" | relLangURL }}{{ . | urlize }}">{{ . }}</a>
-                            {{ end }}
-                        </div>
-                        <!-- End Categories -->
-
-                        {{ if .Site.Config.Services.Disqus.Shortname }}
-                        <!-- Comments -->
-                            {{ if (or (not (isset .Params "comments")) (eq .Params.Comments true)) }}
-                                {{- partial "single-partials/comments.html" . -}}
+        <header>
+            {{- partial "_shared/title.html" . -}}
+            <!-- Post Summary -->
+            <div class="summary">{{ .Summary }}</div>
+            <!-- Author Box -->
+            {{- partial "_shared/postmeta.html" . -}}
+            <div class="d-flex align-items-center">
+                <div class="thumb d-flex">
+                    <a href='/authors/index.html#{{ .Scratch.Get "author" }}'>
+                        <img src='{{ .Scratch.Get "authorThumb" }}' alt='{{ .Scratch.Get "authorName" }}'/>
+                    </a>
+                    {{ $author := (default "anonymous" .Params.Author) }}
+                </div>
+                <div>
+                    <div class="author">
+                        <a class="primary-text-color" href='/authors/index.html#{{ .Scratch.Get "author" }}'>{{ .Scratch.Get "authorName" }}</a>
+                        {{ $authorPage := printf "/authors/%s" (.Params.author | urlize) }}
+                        {{ with .Site.GetPage $authorPage }}
+                            {{ if isset .Params "linkedin" }}
+                            &#8729; <a href="https://linkedin.com/in/{{ .Params.linkedin }}"  data-toggle="tooltip" data-placement="top" title="Follow on LinkedIn">Follow</a>
                             {{ end }}
                         {{ end }}
                     </div>
+                    <div class="post-date">
+                        Published in
+                        {{ range $key, $value := .Params.tags }}
+                            <a class="text-capitalize primary-text-color" href="/tags/{{ $value | urlize }}">{{ $value }}</a>{{ if ne $key (sub (len $.Params.tags) 1) }}, {{ else }}{{ end }}
+                        {{ end }}
+                        &#8729;
+                        {{ .ReadingTime }} min read
+                        &#8729;
+                        {{ dateFormat (default "Jan 2, 2006" .Site.Params.dateFormat) .PublishDate }}
+                    </div>
                 </div>
-            </section>
+            </div>
+        </header>
+        <!-- Post Share -->
+        {{- partial "single-partials/share.html" . -}}
+
+        <!-- Post Featured Image -->
+        {{$images := .Resources.ByType "image"}}
+        {{with $images.GetMatch "*cover*" }}
+            <img class="featured-image img-fluid" src="{{ .Permalink }}" alt="thumbnail for this post">
+        {{end}}
+        <!-- End Featured Image -->
+
+        <!-- Post Content -->
+        <div class="post-content">
+            {{ $content := .Content }}
+            {{ $content | replaceRE `(?s)</p>\s*$` "&nbsp;<span class=\"end-cap\">&nbsp;</span></p>" | safeHTML }}
         </div>
+
+        <!-- Post Categories -->
+        <div class="after-post-tags">
+            {{ range .Params.tags }}
+            <a class="badge rounded-pill text-capitalize text-decoration-none" href="{{ "/tags/" | relLangURL }}{{ . | urlize }}">{{ . }}</a>
+            {{ end }}
+        </div>
+        <!-- End Categories -->
+
+        {{ if .Site.Config.Services.Disqus.Shortname }}
+        <!-- Comments -->
+            {{ if (or (not (isset .Params "comments")) (eq .Params.Comments true)) }}
+                {{- partial "single-partials/comments.html" . -}}
+            {{ end }}
+        {{ end }}
     </article>
     <!-- End Post
         ================================================== -->
     {{- partial "_shared/alertbar.html" . -}}
 {{ end }}
 
-{{ define "footer"}}
+{{ define "aside" }}
     {{ $authorPage := printf "/authors/%s" (.Params.author | urlize) }}
     {{ with .Site.GetPage $authorPage }}
-        <div class="more-from container d-flex justify-content-center">
-            <div class="main-content post-width">
-                <div class="container">
-                    <div>
-                        <div class="author-thumb-large d-flex">
-                            <img src='{{ default (printf "/images/%s.jpg" .Data.Term) .Params.thumbnail }}' alt="{{ .Params.name }}"/>
-                        </div>
-                    </div>
-                    <div>
-                        <div class="more-author-name">Written by <a class="link-dark" href='/authors/index.html#{{ .Data.Term }}'>{{ .Params.name }}</a></div>
-                        <div class="more-author-company"><a href="/" class="link-dark">{{ .Params.summary }}</a></div>
-                        <div class="more-author-title">{{ .Summary }}</div>
-                    </div>
-                </div>
-                <h2>More from {{ .Site.Title }}</h2>
-                <div class="row row-cols-1 row-cols-md-2 gx-4 gy-0">
-                    {{ range (where .Site.Pages "Params.Featured" "==" true) }}
-                        {{- partial "list-partials/postcard.html" . -}}
-                    {{end}}
-                </div>
-            </div>
-        </div>
+        {{- partial "single-partials/writtenby.html" . -}}
     {{ end }}
+    {{- partial "_shared/morefrom.html" . -}}
     {{- partial "_shared/jumbotron.html" . -}}
+{{ end }}
+
+{{ define "footer"}}
     {{- partial "_shared/footer.html" . -}}
 {{ end }}

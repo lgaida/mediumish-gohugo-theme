@@ -1,23 +1,26 @@
 <!-- Begin Author -->
-<div class="author" id="{{ .Data.Term }}">
-    <div class="author-thumb-large d-flex">
-        <img src='{{ default (printf "/images/%s.jpg" .Data.Term) .Params.thumbnail }}' alt="{{ .Params.name }}"/>
-    </div>
-    <div class="author-name">{{ .Params.name }}</div>
-    <div class="author-title">
-        {{ .Params.title }}
-        <span class="social-icons">
+<article class="hugo-{{ .Kind }} {{ .Section }} card" id="{{ .Data.Term }}" data-permalink="{{ .RelPermalink }}">
+    <div class="card-body">
+        <div class="thumb d-flex">
+            <a href='/authors/index.html#{{ .Scratch.Get "author" }}'>
+                <img src='{{ default (printf "/images/%s.jpg" .Data.Term) .Params.thumbnail }}' alt="{{ .Params.name }}"/>
+            </a>
+        </div>
+        <div class="card-title">
+            <a href="{{ .Permalink }}" class="primary-text-color text-decoration-none">{{ .Params.name }}</a>
+        </div>
+        <div class="card-subtitle">{{ .Params.title }}
             {{ if isset .Params "linkedin" }}
-                <a class="text-muted" target='_blank' href='https://linkedin.com/in/{{ .Params.linkedin }}'><i class="fab fa-linkedin"></i></a>
+            <a class="social-icon" target='_blank' href='https://linkedin.com/in/{{ .Params.linkedin }}'><i class="fab fa-linkedin"></i></a>
             {{ end }}
             {{ if isset .Params "twitter" }}
-                <a class="text-muted" target='_blank' href='https://twitter.com/{{ .Params.twitter }}'><i class="fab fa-twitter"></i></a>
+            <a class="social-icon" target='_blank' href='https://twitter.com/{{ .Params.twitter }}'><i class="fab fa-twitter"></i></a>
             {{ end }}
             {{ if isset .Params "email" }}
-                <a class="text-muted" target='_blank' href='mailto:{{ .Params.email }}'><i class="fa fa-envelope"></i></a>
+            <a class="social-icon" target='_blank' href='mailto:{{ .Params.email }}'><i class="fa fa-envelope"></i></a>
             {{ end }}
-        </span>
+        </div>
+        <div class="card-text">{{ .Content}}</div>
     </div>
-    <div class="author-summary">{{ .Content}}</div>
-</div>
+</article>
 <!-- End Author -->

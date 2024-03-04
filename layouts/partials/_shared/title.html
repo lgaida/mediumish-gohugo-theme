@@ -1,10 +1,2 @@
-{{ if default true (default .Site.Params.showTitles) }}
-<!-- Site Title
-================================================== -->
-<div class="mainheading">
-    <h1 class="sitetitle">{{ .Site.Title }}</h1>
-    <p class="lead">
-         {{ .Site.Params.Description }}
-    </p>
-</div>
-{{ end }}
+<!-- Page Title -->
+<div class="title text-capitalize">{{ .Title }}</div>

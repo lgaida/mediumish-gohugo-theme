@@ -3,39 +3,37 @@
 {{ end }}
 
 {{ define "main" }}
-    {{- partial "_shared/title.html" . -}}
     <!-- Begin Index
     ================================================== -->
-    <div class="container">
-        <section>
-            <div class="container d-flex justify-content-center">
-                <div class="main-content post-width">
-                    <!-- Page Title -->
-                    <div class="page-meta">
-                        <h1 class="text-capitalize">{{ .Title }}</h1>
-                    </div>
-                    <!-- Page Content -->
-                    <div content="container">
-                        {{ .Content }}
-                    </div>
-                    <div class="row row-cols-1 row-cols-md-2 g-4 mt-3">
-                        {{ $post_paginator := .Paginate (.Pages) 6 }}
-                        {{ with $post_paginator }}
-                            {{ range .Pages }}
-                                {{- partial "list-partials/postcard.html" . -}}
-                            {{ end }}
-                        {{ end }}
-                    </div>
+    <section>
+        <header>
+            {{- partial "_shared/title.html" . -}}
+        </header>
+        <!-- Page Content -->
+        <div content="container">
+            {{ .Content }}
+        </div>
+        <div class="row row-cols-1 row-cols-md-2 g-4 mt-3">
+            {{ $post_paginator := .Paginate (.Pages) 6 }}
+            {{ with $post_paginator }}
+                {{ range .Pages }}
+                <div class="col">
+                    {{- partial "list-partials/postcard.html" . -}}
                 </div>
-            </div>
-        </section>
-    </div>
+                {{ end }}
+            {{ end }}
+            {{- partial "list-partials/pagination.html" $post_paginator -}}
+        </div>
+    </section>
     <!-- End Index
         ================================================== -->
     {{- partial "_shared/alertbar.html" . -}}
 {{ end }}
 
-{{ define "footer"}}
+{{ define "aside "}}
     {{- partial "_shared/jumbotron.html" . -}}
+{{ end }}
+
+{{ define "footer"}}
     {{- partial "_shared/footer.html" . -}}
 {{ end }}

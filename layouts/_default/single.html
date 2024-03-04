@@ -3,31 +3,22 @@
 {{ end }}
 
 {{ define "main" }}
-    {{- partial "_shared/title.html" . -}}
     <!-- Begin Index
     ================================================== -->
-    <div class="container">
-        <section>
-            <div class="container d-flex justify-content-center">
-                <div class="main-content post-width">
-                    <!-- Page Title -->
-                    <div class="page-meta">
-                        <h1 class="text-capitalize">{{ .Title }}</h1>
-                    </div>
-                    <!-- Page Content -->
-                    <div content="container">
-                        {{ .Content }}
-                    </div>
-                </div>
-            </div>
-        </section>
-    </div>
+    <article data-permalink="{{ .RelPermalink }}">
+        <header>
+            {{- partial "_shared/title.html" . -}}
+        </header>
+        <!-- Page Content -->
+        <div content="container">
+            {{ .Content }}
+        </div>
+    </article>
     <!-- End Index
         ================================================== -->
     {{- partial "_shared/alertbar.html" . -}}
 {{ end }}
 
 {{ define "footer"}}
-    {{- partial "_shared/jumbotron.html" . -}}
     {{- partial "_shared/footer.html" . -}}
 {{ end }}
