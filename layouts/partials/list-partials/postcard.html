@@ -1,4 +1,3 @@
-{{- partial "_shared/postmeta.html" . -}}
 <article class="hugo-{{ .Kind }} {{ .Section }} card" data-permalink="{{ .RelPermalink }}">
     <header class="card-header">
         <a href="{{ .Permalink }}">
@@ -13,12 +12,19 @@
     </header>
     <div class="card-body">
         <div class="thumb d-flex">
-            <a href='/authors/index.html#{{ .Scratch.Get "author" }}'>
-                <img src='{{ .Scratch.Get "authorThumb" }}' alt='{{ .Scratch.Get "authorName" }}'/>
+            {{ if .GetTerms "authors" }}
+                {{ range first 1 (.GetTerms "authors") }}
+            <a href='/authors/index.html#{{ .Data.Term }}'>
+                <img src='{{ default "/images/author.png" .Params.thumbnail }}' alt='{{ default .Data.Term .Params.name }}'/>
             </a>
             <div class="author">
-                <a class="primary-text-color" href='/authors/index.html#{{ .Scratch.Get "author" }}'>{{ .Scratch.Get "authorName" }}</a>
+                <a class="primary-text-color" href='/authors/index.html#{{ .Data.Term }}'>{{ default .Data.Term .Params.name }}</a>
             </div>
+                {{ end }}
+            {{ else }}
+            <img src='/images/author.png' alt='Author'/>
+            <div class="author">Author</div>
+            {{ end }}
         </div>
         <div class="card-title">
             <a href="{{ .Permalink }}" class="primary-text-color text-decoration-none">{{ .Title }}</a>

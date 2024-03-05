@@ -11,26 +11,30 @@
             <!-- Post Summary -->
             <div class="summary">{{ .Summary }}</div>
             <!-- Author Box -->
-            {{- partial "_shared/postmeta.html" . -}}
             <div class="d-flex align-items-center">
                 <div class="thumb d-flex">
-                    <a href='/authors/index.html#{{ .Scratch.Get "author" }}'>
-                        <img src='{{ .Scratch.Get "authorThumb" }}' alt='{{ .Scratch.Get "authorName" }}'/>
-                    </a>
-                    {{ $author := (default "anonymous" .Params.Author) }}
-                </div>
-                <div>
-                    <div class="author">
-                        <a class="primary-text-color" href='/authors/index.html#{{ .Scratch.Get "author" }}'>{{ .Scratch.Get "authorName" }}</a>
-                        {{ $authorPage := printf "/authors/%s" (.Params.author | urlize) }}
-                        {{ with .Site.GetPage $authorPage }}
-                            {{ if isset .Params "linkedin" }}
-                            &#8729; <a href="https://linkedin.com/in/{{ .Params.linkedin }}"  data-toggle="tooltip" data-placement="top" title="Follow on LinkedIn">Follow</a>
-                            {{ end }}
+                {{ if .GetTerms "authors" }}
+                    {{ range first 1 (.GetTerms "authors") }}
+                <a href='/authors/index.html#{{ .Data.Term }}'>
+                    <img src='{{ default "/images/author.png" .Params.thumbnail }}' alt='{{ default .Data.Term .Params.name }}'/>
+                </a>
+            </div>
+            <div>
+                <div class="author">
+                    <a class="primary-text-color" href='/authors/index.html#{{ .Data.Term }}'>{{ default .Data.Term .Params.name }}</a>
+                        {{ with .Params.Linkedin }}
+                    &#8729; <a href="https://linkedin.com/in/{{ . }}"  data-toggle="tooltip" data-placement="top" title="Follow on LinkedIn">Follow</a>
                         {{ end }}
-                    </div>
-                    <div class="post-date">
-                        Published in
+                </div>
+                    {{ end }}
+                {{ else }}
+                <img src='/images/author.png' alt='Author'/>
+            </div>
+            <div>
+                <div class="author">Author</div>
+                {{ end }}
+                <div class="post-date">
+                    Published in
                         {{ range $key, $value := .Params.tags }}
                             <a class="text-capitalize primary-text-color" href="/tags/{{ $value | urlize }}">{{ $value }}</a>{{ if ne $key (sub (len $.Params.tags) 1) }}, {{ else }}{{ end }}
                         {{ end }}

@@ -191,11 +191,12 @@ You can currently provide your username from `github`, `linkedin`, `xing`, `twit
 
 Individual posts (in the `/posts` directory) can contain front matter parameters that control how the page is rendered singly or in lists.
 
-`description`: if supplied, the description is displayed at the top of the post, underneath the title. If not supplied, Hugo's summary of the article (the .Summary parameter) is used instead.
+`author`: if supplied, the name of the author will be displayed at the top of the post, underneath the title. If not supplied, the author will default to the primary site author defined in `hugo.toml`, and if _that_ parameter is not supplied, the author will be “Anonymous.”
+`summary`: if supplied, the top of the post will display a brief synopsis of the article underneath the title. If not supplied, the post will show a [generated summary](https://gohugo.io/content-management/summaries/) of the article (the `.Summary` parameter) instead.
 `image`: if supplied, the image will be displayed as the “featured image” in lists of posts. If not supplied, and the post is organized as a leaf bundle with images contained inside a nested directory, images whose names contain the word `cover` will be displayed instead.
 `comments`: if Disqus has been configured and the value of this parameter is `true` (the default), comments are allowed on the page. Otherwise, comments are not allowed.
 
-### Other
+### Favicons
 
 The Mediumish theme supports __favicons__. By default, the template looks for a favicon at the path `favicon.ico`. To customize the favicon, you can place a file named `favicon.ico` in the `static` directory. For more fine-grained control, override the default by creating your own partial `favicons.html` in `layouts/partials/_shared`. For example, [favicon generators](https://realfavicongenerator.net) can produce appropriate favicons for a variety of devices.
 
@@ -205,7 +206,9 @@ If you need to use __custom CSS__, you can add the CSS file to your `assets/css`
       customcss:
         - /css/my-custom-css.css
 
-The Medium website displays the number of "claps" and comments each posts receives. If you have supplied your Disqus API key in the configuration above, the Mediumish theme will simulate this using the [Disqus API](https://help.disqus.com/en/articles/1717086-available-public-api-data), following the general strategy outlined in [this article](https://stackoverflow.com/questions/16243972/showing-disqus-comment-count-in-a-div-or-span-not-a-href). A tiny snippet of JavaScript obtains the number of likes and comments by making a GET call to the Disqus method `threads/details.jsonp`, which returns a JSON object that looks like this (additional attributes omitted for brevity):
+### Comments
+
+The Medium website displays the number of "claps" and comments each posts receives. If you have supplied your Disqus API key in the configuration above, the Mediumish theme will simulate this using the [Disqus API](https://help.disqus.com/en/articles/1717086-available-public-api-data), following the general strategy outlined in [this article](https://stackoverflow.com/questions/16243972/showing-disqus-comment-count-in-a-div-or-span-not-a-href). A small JavaScript snippet obtains the number of likes and comments by making a GET call to the Disqus method `threads/details.jsonp`, which returns a JSON object that looks like this (additional attributes omitted for brevity):
 
     {"code":0,
      "response":{
@@ -226,6 +229,160 @@ The script then injects these values into elements with the IDs `#disqus-comment
 Feel free to use the [issue tracker](//github.com/lgaida/mediumish-gohugo-theme/issues) if you want to contribute in any possible way.
 You can also create a [pull request](//github.com/lgaida/mediumish-gohugo-theme/pulls) if you have already implemented a new feature that you want to share.
 
-## License
+# Authors
 
-Like the original jekyll-theme this ported theme is released under the MIT License. Read more at the [License](//github.com/lgaida/mediumish-gohugo-theme/blob/master/LICENSE) itself.
+Mediumish supports multiple authors out of the box. Authors maintain their own personal pages under the `/authors/` directory. These pages can define thumbnails, social media handles, and bios for each author. To associate an author with a page, a page author need only add his or her name to the `authors` front matter parameter.
+
+## Setting up Hugo to support Authors
+
+As described in the [documentation](https://gohugo.io/content-management/taxonomies/), Hugo supports categories and tags as default taxonomies. To add author support, you must add the following to your site configuration (`hugo.toml` or `hugo.yaml`):
+
+    taxonomies:
+      author: authors
+      category: categories
+      tag: tags
+
+...which adds authors as a custom taxonomy, and adds back the categories and tags taxonomiies.
+
+## Adding a new Author to the site
+
+Add an author to the site by adding new content to the `authors` directory like so:
+
+    hugo new content authors/luke/_index.md
+
+This command generates a new content page for the author at `/content/authors/luke-skywalker/_index.md`, pre-populates the front matter fields `name`, in Initial Caps; `title`, based on the site-wide `title` from `hugo.toml`; and a default `thumbnail`. The generated author page leaves the `linkedin`, `twitter`, and `email` fields blank, and adds a generated sample bio into the content section. For example:
+
+    ---
+    name: "Luke Skywalker"
+    title: Writer, Lucasfilm
+    linkedin:
+    twitter:
+    email:
+    thumbnail: /images/author.png
+    ---
+    Luke Skywalker is a writer for Lucasfilm.
+
+You can add the author’s key&mdash;in this example, “Luke Skywalker”&mdash;can be to any post’s front matter under the `authors` parameter:
+
+    ---
+    title: "A New Hope"
+    authors:
+      - Luke Skywalker
+    date: 1977-05-27 15:00:00 -0800
+    tags:
+      - star wars
+      - droids
+    ---
+
+By default, the post template will display the author’s full name and title, and will render a Follow link to the author’s LinkedIn profile, if supplied.
+
+## Using usernames in front matter
+
+If adding `Luke Skywalker` to each post’s front matter is too cumbersome (or potentially error-prone), and you would rather use a short username instead, you can instead create author pages with usernames and then change the author page’s `name` parameter to suit. For example, create the initial author page with the short name `luke`:
+
+     hugo new content authors/luke/_index.md
+
+...and then in `authors/luke/_index.md`, change the `name` property to read `Luke Skywalker`.
+
+## Displaying Author properties
+
+Mediumish renders author properties in the following contexts:
+
+| Where | What is Rendered |
+|---|---|
+| Author index at `/authors/` | Name<br>Title<br>Thumbnail<br>LinkedIn “Follow” link<br>Links to LinkedIn, Twitter, and email<br>Link to `id` in `/authors/` index page |
+| Posts, such as `/posts/my-post/` | Name<br>Title<br>Thumbnail<br>LinkedIn “Follow” link<br>Link to `id` in `/authors/` index page |
+| Post cards, such as the “More From” and “Featured” asides | Name<br>Thumbnail<br>Link to `id` in `/authors/` index page |
+
+Mediumish will use a stock image thumbnail if the author page does not supply a `thumbnail`, and will default to the username if the page does not specify a `name`.
+
+As with other taxonomies, such as with tags and categories, the `authors` page parameter supports multiple entries. However, the post template will only render the first one.
+
+# Styling the Mediumish Theme
+
+The Mediumish theme attempts to be faithful to the style conventions of the Medium website. Nonetheless, you can customize the theme easily.
+
+## Changing CSS
+
+The primary cascading style sheet (CSS) used to style Mediumish is stored in the theme’s `assets\css\medium.css` file. The page markup will also look for and load `assets\css\additional.css`, which is zero-length by default. For simple CSS tweaks, create and populate `assets\css\additional.css` in your project.
+
+If you need to make heavier customizations to CSS, make a copy of `assets\css\medium.css` in your project. This file uses CSS root variables to define key font and color styles.
+
+### Fonts
+
+These variables define the fonts used by Mediumish:
+
+| Font | Purpose |
+|------|------|
+| `--mediumish-primary-font` | Default font used throughout the theme. | 
+| `--mediumish-heading-font` | Headings at the top of section indexes, pages and in post bodies |
+| `--mediumish-post-header-font` | Post meta information, such as author names and publication dates |
+| `--mediumish-post-font` | Post bodies, other than headings |
+| `--mediumish-table-font` | Tables |
+| `--mediumish-code-font` | Preformatted blocks, code blocks, and `<code>` elements |
+
+### Colors
+
+| Color | Purpose |
+|-------|---------|
+| `--mediumish-background-color` | Background color for the “Written By” and “More From” asides that appear at the bottoms of posts and some section indexes |
+| `--mediumish-primary-text-color` | Default font color |
+| `--mediumish-secondary-text-color` | Alternative font color, used by post summaries and meta elements |
+| `--mediumish-link-color` | For hyperlinks, tags, and Follow badges |
+| `--mediumish-link-highlight-color` | Highlight color when a hyperlink, tag, or badge is hovered over; blue by default |
+| `--mediumish-reversed-color` | Badge text color, white by defailt |
+| `--mediumish-accent-color` | Vertical bar accompanying blockquotes |
+| ` --mediumish-code-color` | Preformatted blocks, code blocks, and `<code>` elements
+| `--mediumish-medium-gray` | Horizontal rules and a few borders
+| `--mediumish-light-gray` | Border for the Share popover and index numbers for featured posts |
+
+## Changing Layouts
+
+The Mediumish theme uses HTML 5 [semantic elements](https://www.w3schools.com/html/html5_semantic_elements.asp) to make the structure of pages more obvious, and less dependent on `<div>` elements.
+
+### Structure
+
+The `layouts\_default\baseof.html` file enforces a consistent structure for the home page, post pages, section index pages, 404s, and other pages. The top-level elements under `<body>` are the `<header`>, `<main>`, and `<footer>`, elements for the page navigation, page, and footer content, respectively. The general page structure looks like this:
+
+    body
+      header
+        nav
+      main
+        article | section
+          header
+      aside [0..n]
+        section
+      footer
+
+| Layout | Layout File | `<main>` CSS Classes  | Content element | Additional Included elements |
+|---|---|---|---|---|
+| Homepage | `layouts/index.html` | `.hugo-home` | `section` | `aside.featured` |
+| Post pages | `layouts/posts/single.html` | `.hugo-page .posts` | `article` | `aside.written-by`<br>`aside.more-from`<br>`aside.jumbotron` |
+| Other pages | `layouts/_default/single.html` | `.hugo-page`<br>_`.section`_ | `article` |
+| Authors index page | `layouts/_default/author.terms.html` | `.hugo-taxonomy`<br>`authors` | `section` | `aside.more-from` |
+| Tag pages | `layouts/_default/list.html` | `.hugo-term`<br>`tags` | `section`
+| 404 | `layouts/404.html` | `.hugo-404` | `section`
+
+So that they can be reliably used in CSS rules, the `baseof.html` layout adds the `<main>` CSS classes automatically based on the values of `.Kind` and `.Section`.
+
+### Asides
+
+As shown in the table above, Mediumish includes several _asides_ in its default templates. Asides are HTML elements that show information that is related to, but not part of, the content on the page. The out-of-the-box asides are as follows:
+
+| Aside | Layout file | Contents |
+|---|---|---|
+| Jumbotron | `layouts\partials\_shared\jumbotron.html` | List of tags all posts |
+| Written By | `layouts\single-partials\_shared\writtenby.html` | Picture of the author and an abbreviated bio, based on the summary from the author’s page
+| More From | `layouts\partials\_shared\morefrom.html` | List of all posts with the front matter value `featured` set to `true`, other than the current page
+| Featured | Inside `layout\index.html` | List of all posts with the front matter value `featured` set to `true` |
+
+### Cards
+
+Mediumish renders certain kinds of content as [Bootstrap cards](https://getbootstrap.com/docs/4.0/components/card/) in lists and asides. These kinds include:
+
+- __Posts__. The layout file `layouts/partials/list-partials/postcard.html` defines how posts appear in lists and the “More From” and “Featured” asides. The default layout displays the post’s featured image at the top, followed by the picture and name of the author, post title, two-line summary, and meta information (reading time and date). In the “Featured” aside, the image, summary, and save button are hidden.
+- __Authors__. The layout file `layouts/partials/list-partials/author.html` defines how authors appear on the authors index page. The default layout displays the author’s using the author’s page `thumbnail` front matter, the `title` and `company` propoerties from the author’s entry in the `dataa/authors.yaml` files, links to social media if supplied, and the author’s biography, which is from the author’s `_index.html` file under `authors/` directory.
+
+# License
+
+Like the original Mediumish Jekyll-theme and lgaida's port to Hugo, this ported theme is released under the MIT License. Read more at the [License](//github.com/lgaida/mediumish-gohugo-theme/blob/master/LICENSE) itself.
