@@ -5,7 +5,7 @@
         <header>
             {{- block "header" . }}{{- end }}
         </header>
-        <main class="hugo-{{ .Kind }} {{ .Section }} container d-flex justify-content-center">
+        <main class="hugo-{{ .Kind }} {{ .Section }} container d-flex flex-column justify-content-center align-items-center">
             {{- block "main" . }}{{- end }}
         </main>
         {{- block "aside" . }}{{- end }}

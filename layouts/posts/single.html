@@ -9,7 +9,7 @@
         <header>
             {{- partial "_shared/title.html" . -}}
             <!-- Post Summary -->
-            <div class="summary">{{ .Summary }}</div>
+            <h2>{{ .Summary }}</h2>
             <!-- Author Box -->
             <div class="d-flex align-items-center">
                 <div class="thumb d-flex">
@@ -61,6 +61,18 @@
             {{ $content := .Content }}
             {{ $content | replaceRE `(?s)</p>\s*$` "&nbsp;<span class=\"end-cap\">&nbsp;</span></p>" | safeHTML }}
         </div>
+    </article>
+
+    <div>
+        <!-- Navigation -->
+        <div class="navigation d-flex justify-content-between">
+            {{with .NextInSection}}
+            <a class="d-block col-md-6" href="{{ .Permalink }}"> &laquo; {{.Title}}</a>
+            {{end}}
+            {{with .PrevInSection}}
+            <a class="d-block col-md-6 text-lg-right" href="{{ .Permalink }}">{{.Title}} &raquo;</a>
+            {{end}}
+        </div>            
 
         <!-- Post Categories -->
         <div class="after-post-tags">
@@ -76,16 +88,17 @@
                 {{- partial "single-partials/comments.html" . -}}
             {{ end }}
         {{ end }}
-    </article>
+    </div>
     <!-- End Post
         ================================================== -->
     {{- partial "_shared/alertbar.html" . -}}
 {{ end }}
 
 {{ define "aside" }}
-    {{ $authorPage := printf "/authors/%s" (.Params.author | urlize) }}
-    {{ with .Site.GetPage $authorPage }}
-        {{- partial "single-partials/writtenby.html" . -}}
+    {{ if .GetTerms "authors" }}
+        {{ range first 1 (.GetTerms "authors") }}
+            {{- partial "single-partials/writtenby.html" . -}}
+        {{ end }}
     {{ end }}
     {{- partial "_shared/morefrom.html" . -}}
     {{- partial "_shared/jumbotron.html" . -}}

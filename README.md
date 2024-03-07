@@ -231,7 +231,7 @@ You can also create a [pull request](//github.com/lgaida/mediumish-gohugo-theme/
 
 # Authors
 
-Mediumish supports multiple authors out of the box. Authors maintain their own personal pages under the `/authors/` directory. These pages can define thumbnails, social media handles, and bios for each author. To associate an author with a page, a page author need only add his or her name to the `authors` front matter parameter.
+Mediumish supports multiple authors out of the box. Authors maintain their own personal pages under the `/authors/` directory. Each author page can define a unique thumbnail, set of social media handles, and author bio. To associate an author with a content page, just add the author name to the `authors` front matter parameter.
 
 ## Setting up Hugo to support Authors
 
@@ -242,15 +242,15 @@ As described in the [documentation](https://gohugo.io/content-management/taxonom
       category: categories
       tag: tags
 
-...which adds authors as a custom taxonomy, and adds back the categories and tags taxonomiies.
+...which adds authors as a custom taxonomy, and adds back the categories and tags taxonomies, which would otherwise be removed.
 
 ## Adding a new Author to the site
 
-Add an author to the site by adding new content to the `authors` directory like so:
+Add an author to the site by adding a new author page to the `authors` directory like so:
 
     hugo new content authors/luke/_index.md
 
-This command generates a new content page for the author at `/content/authors/luke-skywalker/_index.md`, pre-populates the front matter fields `name`, in Initial Caps; `title`, based on the site-wide `title` from `hugo.toml`; and a default `thumbnail`. The generated author page leaves the `linkedin`, `twitter`, and `email` fields blank, and adds a generated sample bio into the content section. For example:
+In this example, this command generates a new content page for Luke Skywalker at `/content/authors/luke-skywalker/_index.md`, pre-populates the front matter fields `name`, in Initial Caps; `title`, based on the site-wide `title` from `hugo.toml`; and a default `thumbnail`. The generated author page leaves the `linkedin`, `twitter`, and `email` fields blank, and adds a generated sample bio into the content section. For example:
 
     ---
     name: "Luke Skywalker"
@@ -262,7 +262,7 @@ This command generates a new content page for the author at `/content/authors/lu
     ---
     Luke Skywalker is a writer for Lucasfilm.
 
-You can add the author’s key&mdash;in this example, “Luke Skywalker”&mdash;can be to any post’s front matter under the `authors` parameter:
+To add an author to a content page, add the author’s key&mdash;in this example, “Luke Skywalker”&mdash; to the page’s `authors` front matter:
 
     ---
     title: "A New Hope"
@@ -278,11 +278,11 @@ By default, the post template will display the author’s full name and title, a
 
 ## Using usernames in front matter
 
-If adding `Luke Skywalker` to each post’s front matter is too cumbersome (or potentially error-prone), and you would rather use a short username instead, you can instead create author pages with usernames and then change the author page’s `name` parameter to suit. For example, create the initial author page with the short name `luke`:
+If adding `Luke Skywalker` to each post’s front matter is too cumbersome (or potentially error-prone), and you would rather use a short username instead, you can instead create author pages with usernames and then change the author page’s `name` parameter to suit. For example, to create the initial author page using a short name `luke`:
 
      hugo new content authors/luke/_index.md
 
-...and then in `authors/luke/_index.md`, change the `name` property to read `Luke Skywalker`.
+...and then in `authors/luke/_index.md`, change the `name` property to read `Luke Skywalker`. Content pages can now simply specify `luke` as an author.
 
 ## Displaying Author properties
 
@@ -302,29 +302,33 @@ As with other taxonomies, such as with tags and categories, the `authors` page p
 
 The Mediumish theme attempts to be faithful to the style conventions of the Medium website. Nonetheless, you can customize the theme easily.
 
-## Changing CSS
+## Cascading Style Sheets
 
-The primary cascading style sheet (CSS) used to style Mediumish is stored in the theme’s `assets\css\medium.css` file. The page markup will also look for and load `assets\css\additional.css`, which is zero-length by default. For simple CSS tweaks, create and populate `assets\css\additional.css` in your project.
+The primary cascading style sheet (CSS) used to style Mediumish is the theme’s `assets\css\medium.css` file. The page markup will also look for and load `assets\css\additional.css`, which is zero-length by default. For simple CSS tweaks, the easiest way to customize the appearance of your site is to create and populate `assets\css\additional.css` in your project.
 
-If you need to make heavier customizations to CSS, make a copy of `assets\css\medium.css` in your project. This file uses CSS root variables to define key font and color styles.
+If you need to make heavier customizations to CSS, make a copy of `assets\css\medium.css`. The Mediumish style sheet makes heavy use of root variables to define key font and color styles. Explanations follow.
 
 ### Fonts
 
 These variables define the fonts used by Mediumish:
 
-| Font | Purpose |
-|------|------|
+| CSS Variable | Purpose |
+|---|---|
 | `--mediumish-primary-font` | Default font used throughout the theme. | 
-| `--mediumish-heading-font` | Headings at the top of section indexes, pages and in post bodies |
-| `--mediumish-post-header-font` | Post meta information, such as author names and publication dates |
-| `--mediumish-post-font` | Post bodies, other than headings |
+| `--mediumish-heading-font` | Page and post headings |
+| `--mediumish-post-headline-font` | Post headlines |
+| `--mediumish-post-summary-font` | Post summary at top of page |
+| `--mediumish-post-header-font` | Post metadata at top of page |
+| `--mediumish-post-font` | Post body |
 | `--mediumish-table-font` | Tables |
-| `--mediumish-code-font` | Preformatted blocks, code blocks, and `<code>` elements |
+| `--mediumish-code-font` | Preformatted blocks, code blocks, and inline `<code>` |
 
 ### Colors
 
-| Color | Purpose |
-|-------|---------|
+These variables define the color scheme.
+
+| CSS Variable | Purpose |
+|---|---|
 | `--mediumish-background-color` | Background color for the “Written By” and “More From” asides that appear at the bottoms of posts and some section indexes |
 | `--mediumish-primary-text-color` | Default font color |
 | `--mediumish-secondary-text-color` | Alternative font color, used by post summaries and meta elements |
@@ -335,6 +339,28 @@ These variables define the fonts used by Mediumish:
 | ` --mediumish-code-color` | Preformatted blocks, code blocks, and `<code>` elements
 | `--mediumish-medium-gray` | Horizontal rules and a few borders
 | `--mediumish-light-gray` | Border for the Share popover and index numbers for featured posts |
+
+## Font-sizes, padding and margins
+
+As a general rule, CSS `font-size` declarations are specified in `rem` units, which are multiples of the root `font-size` declaration for the `html` element, which is 16 pixels high by default. Using rems allows font sizes below the root to be scaled predictably. Below the root `html` element, the Mediumish theme employs the following strategy for other sizing-related declarations:
+
+- __Top and bottom margins__ are specified in _ems_, which gives them a fixed proportion relative to the font sizes of their containing elements. What this means is if the `font-size` for a given element changes, its vertical margins and paddings will change as well.
+- __Line heights__ and __letter-spacings__ are specified in _ems_ so that they can scale relative to the containing element’s `font-size`.
+- __Left and right margins__ are specified in _rems_, which gives them a fixed proportion relative to the root font size. Changing the `font-size` for an element will not change its horizontal padding or margin, unless the root changes.
+- __Absolute widths__ for elements are specified in _px_, which gives them a fixed size relative to the screen.
+
+These CSS variables specify the font sizes used throughout the theme:
+
+| CSS Variable | Root Ems | Size | Purpose |
+|---|---|---|---|
+| `--mediumish-font-base` | 1 | 16px | Default size specified in the root <html> element. Also used by card titles, post headers, tables |
+| `--mediumish-font-xs` | 0.813 | 13px | Card text default, page footers, alertbar |
+| `--mediumish-font-s` | 0.875 | 14px | Card subtitles and text, post dates, pre tags, nav bar |
+| `--mediumish-font-base-plus` | 1.25 | 20px Post bullets, post card titles |
+| `--mediumish-font-m` | 1.375 | 21.6 | Heading 2/Heading 3, Article summaries |
+| `--mediumish-font-l` | 1.5 | 24px | Heading 1, page titles, author card/written by titles |
+| `--mediumish-font-xl` | 2 | 32px | Aside index numbers |
+| `--mediumish-font-xxl` | 2.625 | 42px Post headlines |
 
 ## Changing Layouts
 

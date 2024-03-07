@@ -13,10 +13,12 @@ https://levelup.gitconnected.com/3-tips-to-sharing-beautiful-tables-on-medium-po
 :root {
     --mediumish-primary-font: "Helvetica Neue", Helvetica, Arial, sans-serif;            /* Default font */
     --mediumish-heading-font: "Helvetica Neue", Helvetica, Arial, sans-serif;            /* Page and post headings */
+    --mediumish-post-headline-font: "Helvetica Neue", Helvetica, Arial, sans-serif;      /* Post headlines */
+    --mediumish-post-summary-font: "Helvetica Neue", Helvetica, Arial, sans-serif;       /* Post summary at top of page */
     --mediumish-post-header-font: "Helvetica Neue", Helvetica, Arial, sans-serif;        /* Post metadata at top of page */
     --mediumish-post-font: Georgia, Cambria, "Times New Roman", Times, serif;            /* Post body */
     --mediumish-table-font: "Helvetica Neue", Helvetica, Arial, sans-serif;              /* Tables */
-    --mediumish-code-font: monospace, sans-serif, "Courier New", Courier;                /* Preformatted and code */
+    --mediumish-code-font: monospace, sans-serif, "Courier New", Courier;                /* Preformatted blocks, code blocks, and inline `<code>` */
     --mediumish-background-color: rgb(249, 249, 249);                                  /* Written-by and More-From asides */
     --mediumish-primary-text-color: rgb(36, 36, 36);                                   /* Default font color */
     --mediumish-secondary-text-color: rgb(107, 107, 107);                              /* Alternative font color */
@@ -27,6 +29,16 @@ https://levelup.gitconnected.com/3-tips-to-sharing-beautiful-tables-on-medium-po
     --mediumish-code-color: rgb(214, 51, 132);                                         /* <code> color */
     --mediumish-medium-gray: rgb(229, 229, 229);
     --mediumish-light-gray: rgb(242, 242, 242);
+    --mediumish-font-base: 1rem;                           /* 16px Default size specified in the root <body> element. Also used by card titles, post headers, tables */
+    --mediumish-font-xs: 0.813rem;                         /* 13px Card text default, page footers, alertbar */
+    --mediumish-font-s: 0.875rem;                          /* 14px Card subtitles and text, post dates, pre tags, nav bar */
+    --mediumish-font-base-plus: 1.25rem;                   /* 20px Post bullets, post card titles */
+    --mediumish-font-m: 1.375rem;                          /* 21.6px Heading 2/Heading 3, Article summaries */
+    --mediumish-font-l: 1.5rem;                            /* 24px Heading 1, page titles, author card/written by titles */
+    --mediumish-font-xl: 2rem;                             /* 32px Aside index numbers */
+    --mediumish-font-xxl: 2.625rem;                        /* 42px Post headlines */
+    --mediumish-space-normal: 1.25em;                      /* Normal line spacing */
+    --mediumish-space-loose: 1.429em;
 }
 
 html {
@@ -35,15 +47,16 @@ html {
 
 body {
     color: var(--mediumish-primary-text-color);
-    font-family: var(--mediumish-primary-font) !important;
+    font-family: var(--mediumish-primary-font);
     font-style: normal;
+    font-weight: 400;
 }
 
 /* ----------- Containers ----------- */
 
 main {
-    margin-top: 3.625rem;                        /* 58px */
-    margin-bottom: 4.25rem;                      /* 68px */
+    margin-top: 3.625em;                         /* 58px */
+    margin-bottom: 4.25em;                       /* 68px */
     min-height: 60vh;
 }
 
@@ -65,7 +78,7 @@ aside.more-from > section
 
 .mediumnavigation {
     background: rgba(255, 255, 255, .97);
-    box-shadow: 0 2px 2px -2px rgba(0, 0, 0, .15);
+    box-shadow: 0 2px 2px -2px var(--mediumish-medium-gray);
     transition: top 0.2s ease-in-out;
 }
 
@@ -79,9 +92,9 @@ aside.more-from > section
 }
 
 .mediumnavigation .form-control {
-    border: 1px solid rgba(0, 0, 0, 0.04);
+    border: 1px solid var(--mediumish-light-gray);
     border-radius: 30px;
-    font-size: 0.8rem;
+    font-size: var(--mediumish-font-xs);
     min-width: 180px;
     overflow: hidden;
 }
@@ -104,11 +117,11 @@ aside.more-from > section
 
 .mediumnavigation .dropdown-menu {
     margin: 0.5rem 0 0;
-    border: 1px solid rgba(0, 0, 0, 0.08);
+    border: 1px solid var(--mediumish-light-gray);
 }
 
 .mediumnavigation .nav-item, .dropdown-menu {
-    font-size: 0.9rem;
+    font-size: var(--mediumish-font-s);
 }
 
 .mediumnavigation .search-icon {
@@ -129,28 +142,29 @@ aside.more-from > section
 
 h1, h2, h3, h4, h5, h6 {
     margin: 0;
+    color: var(--mediumish-primary-text-color);
     font-family: var(--mediumish-heading-font);
 }
 
 h1 {
-    margin: 2.925rem 0 0.42rem 0;                /* 46.8px 6.72px */
-    font-size: 1.5rem;                           /* 24px */
-    line-height: 1.25em;                         /* 30px */
+    margin: 1.95em 0 0.28em 0;                   /* 46.8px 6.72px */
+    font-size: var(--mediumish-font-l);          /* 24px */
+    line-height: var(--mediumish-space-normal);  /* 30px */
     font-weight: 600;
     letter-spacing: -0.016em;
 }
 
 h2 {
-    margin: 2.32rem 0 0.41875rem 0;              /* 1.72em 37.15px, 0.31em 6.7px */
-    font-size: 1.35rem;                          /* 20px */
+    margin: 1.719em 0 0.31em 0;                 /* 1.72em 37.15px, 0.31em 6.7px */
+    font-size: var(--mediumish-font-m);          /* 20px */
     line-height: 1.2em;                          /* 24px */
     font-weight: 600;
     letter-spacing: normal;
 }
 
 h3 {
-    margin: 2.32rem 0 0.14875rem 0;              /* 1.72em 37.15px, 0.11em 2.38px */
-    font-size: 1.35rem;                          /* 20px */
+    margin: 1.719em 0 0.11em 0;                   /*  37.15px, 2.38px */
+    font-size: var(--mediumish-font-m);          /* 20px */
     line-height: 1.1em;                          /* 22px */
     font-weight: 300;
     font-style: italic;
@@ -165,7 +179,7 @@ h3 {
 }
 
 .hugo-home h1 {
-    margin-top: 1.75rem;                         /* 28px */
+    margin-top: 1.167em;                         /* 28px */
 }
 
 .carousel-caption {
@@ -179,79 +193,68 @@ h3 {
 
 /* ----------- Posts ------------ */
 
-article header {
-    font-family: var(--mediumish-post-header-font);
-    color: var(--mediumish-secondary-text-color);
-    font-weight: 400;
+.hugo-page article {
+    margin-bottom: 4.25em;                       /* 68px */;
+    font-size: var(--mediumish-font-base-plus);  /* 20px */
+    line-height: 1.6em;                          /* 32px */
+    color: var(--mediumish-primary-text-color);
+    font-family: var(--mediumish-post-font);
+    letter-spacing: -0.003em;
+    word-break: break-word;
 }
 
-.title {
-    color: var(--mediumish-primary-text-color);
-    margin: 3.125rem 0 2rem 0;                   /* 50px 1.19em, 32px */
-    font-size: 2.625rem;                         /* 42px */
-    line-height: 1.2380952381em;                 /* 52px */
+.hugo-page article header {
+    font-family: var(--mediumish-post-header-font);
+}
+
+.hugo-page article header h1 {
+    margin: 1.191em 0 0.762em 0;                 /* 50px, 32px */
+    font-size: var(--mediumish-font-xxl);        /* 42px */
+    line-height: 1.238em;                        /* 52px */
+    font-family: var(--mediumish-post-headline-font);
     font-weight: 700;
     letter-spacing: -0.011em;
 }
 
-.hugo-page .summary {
-    margin: -1.25rem 0 1.5rem 0;                 /* -20px -0.9em, 24px */
-    font-size: 1.375rem;                         /* 22px */
-    line-height: 1.2727272727em;                 /* 28px */
+.hugo-page article header h2 {
+    margin: -0.909em 0 1.091em 0;                /* -20px, 24px */
+    line-height: 1.273em;                        /* 28px */
+    color: var(--mediumish-secondary-text-color);
+    font-family: var(--mediumish-post-summary-font);
     font-weight: 400;
-    letter-spacing: normal;
 }
 
-article header .author {
-    margin: 0 0 0.125rem 0;                      /* 2px */
-    font-size: 1rem;                             /* 16px */
+.hugo-page article header .author {
+    margin: 0 0 0.125em 0;                       /* 2px */
+    font-size: var(--mediumish-font-base);       /* 16px */
     height: 1.5em;                               /* 24px */
     line-height: 1.5em;                          /* 24px */
 }
 
-.post-date {
-    font-size: 0.875rem;                         /* 14px */
-    line-height: 1.4285714286em;                 /* 20px */
-}
-
-.post-content {
-    margin-bottom: 4.25rem;                      /* 68px */;
-}
-
-.hugo-page article {
-    font-family: var(--mediumish-post-font);
-    font-weight: 400;
-    word-break: break-word;
+.hugo-page article header .post-date {
+    font-size: var(--mediumish-font-s);          /* 14px */
+    line-height: var(--mediumish-space-loose);   /* 20px */
 }
 
 .hugo-page article h1 {
-    margin: 2.925rem 0 -0.42rem 0;               /* 1.95em 46.8px, -0.28em -6.72px */
-    font-size: 1.5rem;                           /* 24px */
-    line-height: 1.25em;                         /* 30px */
+    margin: 1.95em 0 -0.28em 0;                  /*  46.8px, -6.72px */
     letter-spacing: -0.016em;
 }
 
 .hugo-page article h1 + p,
 .hugo-page article h2 + p,
 .hugo-page article h3 + p {
-    margin-top: 1.175rem !important;             /*  0.94em 18.8px */
-}
-
-.hugo-page article p,
-.hugo-page article li {
-    font-size: 1.25rem;                          /* 20px */
-    line-height: 1.6em;                          /* 32px */
-    letter-spacing: -0.003em;
+    margin-top: 0.94em !important;               /* 18.8px */
 }
 
 .hugo-page article p,
 .hugo-page article ol,
 .hugo-page article ul {
-    margin: 2.675rem 0 -0.575rem 0;              /* 2.14em 42.8px, -0.46em -9.2px */
+    margin: 2.675em 0 -0.575em 0;                /* 42.8px, -9.2px */
 }
 
 .hugo-page article li {
-    margin: 0.875rem 0 0 0;                      /* 0.7em 14px */
+    margin: 0.7em 0 0 0;                         /* 14px */
 }
 
 .hugo-page article ol ol,
@@ -262,12 +265,12 @@ article header .author {
 /* ----------- Post cards ----------- */
 
 .card {
-    padding: 0 0 3.5rem 0;                       /* 56px */
-    font-size: 0.8125rem;                        /* 13px */
-    line-height: 1.5384615385em;                 /* 20px */
+    padding: 0 0 4.308em 0;                      /* 56px */
+    line-height: 1.538em;                        /* 20px */
     background-color: transparent;
     border: 0;
     color: var(--mediumish-secondary-text-color);
+    font-size: var(--mediumish-font-xs);         /* 13px */
     font-weight: 400;
     height: 100%;
     letter-spacing: normal;
@@ -285,136 +288,134 @@ article header .author {
 }
 
 .card-body {
-    margin: 1.5rem 0 0 0;                        /* 24px */
-    padding: 0 0 1rem 0;                         /* 16px */
+    margin: 1.846em 0 0 0;                       /* 24px */
+    padding: 0 0 1.231em 0;                      /* 16px */
 }
 
 .card-body .author {
     padding-right: 0.25rem;                      /* 4px */
+    font-family: var(--mediumish-post-header-font);
 }
 
 .card-body .card-title {
     margin: 0;
     padding: 0;
-    font-size: 1.25rem;                          /* 20px */
+    font-size: var(--mediumish-font-base-plus);  /* 20px */
     line-height: 1.2em;                          /* 24px */
+    font-family: var(--mediumish-post-headline-font);
     font-weight: 700;
 }
 
 .card-text {
-    padding-top: 0.5rem;                         /* 8px */
-    font-size: 1rem;                             /* 16px */
-    line-height: 1.25em;                         /* 20px */
+    font-family: var(--mediumish-post-summary-font);
+    padding-top: 0.5em;                          /* 8px */
+    font-size: var(--mediumish-font-base);       /* 16px */
+    line-height: var(--mediumish-space-normal);     /* 20px */
 }
 
 .card-footer {
     padding: 0;
     background-color: transparent;
     border: 0;
+    font-family: var(--mediumish-post-header-font);
 }
 
 /* ----------- Author cards ----------- */
 
 .authors .card {
-    margin-top: 3rem;                            /* 48px */
-    margin-bottom: 1rem;                         /* 16px */
+    margin-top: 3.429em;                         /* 48px */
+    margin-bottom: 1.143em;                      /* 16px */
     padding-bottom: 0;
-    font-size: 0.875rem;                         /* 14px */
-    line-height: 1.4285714286em;                 /* 20px */
+    font-size: var(--mediumish-font-s) !important; /* 14px */
+    line-height: var(--mediumish-space-loose);   /* 20px */
 }
 
 .authors .card .card-title {
     margin-top: 0;
-    font-size: 1.5rem;                           /* 24px */
-    line-height: 1.25em;                         /* 30px */
+    font-size: var(--mediumish-font-l);          /* 24px */
+    line-height: var(--mediumish-space-normal);  /* 30px */
     font-weight: 500;
 }
 
 .authors .card .card-subtitle {
-    margin-top: 0.5rem;                          /* 8px */
-    line-height: 1.4285714286em;                 /* 20px */
-    font-size: 0.875rem;                         /* 14px */
+    margin-top: 0.571em;                         /* 8px */
+    line-height: var(--mediumish-space-loose);   /* 20px */
     color: var(--mediumish-primary-text-color);
 }
 
 .authors .card .card-text {
-    margin-top: 1rem;                            /* 16px */
-    font-size: 0.875rem;                         /* 14px */
-    line-height: 1.4285714286em;                 /* 20px */
+    margin-top: 1.143em;                         /* 16px */
+    font-size: var(--mediumish-font-s);          /* 14px */
+    line-height: 1.429;                          /* 20px */
     color: var(--mediumish-primary-text-color);
 }
 
 /* ----------- Asides (written by, more from, featured) ----------- */
 
 aside.written-by {
-    padding-top: 4.5rem;                         /* 72px */
-    padding-right: 1.5rem;                       /* 24px */
-    padding-left:  1.5rem;                       /* 24px */
+    padding: 4.5em 1.5rem 0 1.5rem;              /* 72px, 24px, 24px */
+    font-size: var(--mediumish-font-s);          /* 14px */
+    line-height: var(--mediumish-space-loose);   /* 20px */
     background-color: var(--mediumish-background-color);
+    font-weight: 400;
+}
+
+aside.written-by .thumb {
+    margin-bottom: 1rem;
+}
+
+aside.written-by h1 {                            /* Written by [Author] */
+    margin-top: 0;
+    font-weight: 500;
+}
+
+aside.written-by .title {
+    margin-top: 0.571em;                         /* 8px */
+}
+
+aside.written-by .summary {
+    margin-top: 1.143em;                         /* 16px */
 }
 
 aside.written-by hr {
     border-top: 1px solid var(--mediumish-medium-gray) !important;
-    margin-top: 2.5rem;
+    margin-top: 2.5em;
     margin-bottom: 0;
     opacity: 100%;
 }
 
-aside.written-by .author {
-    font-size: 1.5rem;                           /* 24px */
-    line-height: 1.875em;                        /* 30px */
-    font-weight: 500;
-    letter-spacing: -0.016em;
-}
-
-aside.written-by .company {
-    margin-top: 0.5rem;                          /* 8px */
-    font-size: 0.875rem;                         /* 14px */
-    line-height: 1.4285714286em;                 /* 20px */
-    font-weight: 400;
-}
-
-aside.written-by .title {
-    margin-top: 1rem;                            /* 16px */
-    font-size: 0.875rem;                         /* 14px */
-    line-height: 1.4285714286em;                 /* 20px */
-    font-weight: 400;
-}
-
 aside.more-from {
-    padding-right: 1.5rem;                       /* 24px */
-    padding-bottom: 2.5rem;                      /* 40px */
-    padding-left:  1.5rem;                       /* 24px */
+    padding: 0 1.5rem 2.5em 1.5rem;              /* 24px, 40px, 24px */
     background-color: var(--mediumish-background-color);
 }
 
 aside.more-from h2 {
-    margin-top: 2.5rem;                          /* 40px */
-    margin-bottom: 2rem;                         /* 32px */
-    font-size: 1rem;                             /* 16px */
-    line-height: 1.25em;                         /* 20px */
+    margin-top: 2.5em;                           /* 40px */
+    margin-bottom: 2em;                          /* 32px */
+    font-size: var(--mediumish-font-base);       /* 16px */
+    line-height: var(--mediumish-space-normal);  /* 20px */
     font-weight: 500;
 }
 
 aside.featured h1 {
     margin-top: 2rem !important;                 /* 32px */
-    font-size: 1rem;                             /* 16px */
-    line-height: 1.25em;                         /* 20px */
+    font-size: var(--mediumish-font-base);       /* 16px */
     font-weight: 500;
 }
 
 aside.featured .idx {
-    margin: 0.3125rem 1rem 0 0;                  /* 5px, 16px */
-    font-size: 2rem;                             /* 32px */
+    margin: 0.156em 1rem 0 0;                    /* 5px, 16px */
+    font-size: var(--mediumish-font-xl);         /* 32px */
     line-height: 1.1875em;                       /* 38px */
     width: 2.5rem;                               /* 40px */
     color: var(--mediumish-light-gray);
+    font-family: var(--mediumish-post-headline-font);
     font-weight: 500;
     letter-spacing: -0.014em;
 }
 
 aside.featured .card {
-    margin: 1rem 0 0.5rem 0;                     /* 16px, 8px */
+    margin: 1.231em 0 0.615em 0;                 /* 16px, 8px */
     padding-bottom: 0;
 }
 
@@ -423,9 +424,9 @@ aside.featured .author {
 }
 
 aside.featured .card-title {
-    margin-bottom: 0.5rem;                       /* 8px */
-    font-size: 1rem;                             /* 16px */
-    line-height: 1.25em;                         /* 20px */
+    margin-bottom: 0.5em;                        /* 8px */
+    font-size: var(--mediumish-font-base);       /* 16px */
+    line-height: var(--mediumish-space-normal);  /* 20px */
 }
 
 aside.featured .card-body {
@@ -448,7 +449,7 @@ img {
 a.social-icon {
     padding-left: 0.25em;
     margin: 0 0 0 0.5em;
-    font-size: 1.4285714286em;
+    font-size: 1.3em;                            /* 20px */
     color: var(--mediumish-secondary-text-color);
 }
 
@@ -462,7 +463,7 @@ a.navbar-brand img {
 
 .featured-image {
     display: block;
-    margin-bottom: 1.5rem;                       /* 24px */
+    margin-bottom: 1.5em;                        /* 24px */
 }
 
 .thumb img {
@@ -486,7 +487,7 @@ article header .thumb img {
 /* Author pages and Written-by aside */
 .written-by .thumb img,
 .authors .card .thumb img {
-    margin-bottom: 1rem;                        /* 16px */
+    margin-bottom: 1em;                         /* 16px */
     height: 4.75rem !important;
     width: 4.75rem;                             /* 76px */
     min-width: 4.75rem;                         /* 76px */
@@ -496,7 +497,7 @@ article header .thumb img {
 .more-from article .thumb img,
 article .thumb img {
     margin-right: 0.5rem;                        /* 8px */
-    margin-bottom: 1rem;                         /* 16px */
+    margin-bottom: 1em;                          /* 16px */
     height: 1.4375rem !important;                /* 23px */
     width: 1.4375rem;                            /* 23px */
     min-width: 1.4375rem;                        /* 23px */
@@ -514,14 +515,14 @@ aside.featured .thumb img {
 /* ----------- Figures, Captions, and Footnotes ---------- */
 
 figure {
-    margin-top: 3.5rem;                          /* 56px */
+    margin-top: 3.5em;                           /* 56px */
     text-align: center;
 }
 
 figcaption h4 {
     margin: 0.625rem auto 0 auto;                /* 10px */
-    font-size: 0.875rem;                         /* 14px */
-    line-height: 1.4285714286em;                 /* 20px */
+    font-size: var(--mediumish-font-s);          /* 14px */
+    line-height: var(--mediumish-space-loose);   /* 20px */
     color: var(--mediumish-secondary-text-color);
     display: block;
     font-weight: 400;
@@ -529,20 +530,16 @@ figcaption h4 {
 }
 
 .footnotes hr  {
-    margin-top: 2.5rem;                          /* 40px */
-    margin-bottom: 2.5rem;                       /* 40px */
-}
-
-.footnotes p {
-    margin: 0;
+    margin-top: 3.5em;                           /* 56px */
+    margin-bottom: 2.5em;                        /* 40px */
 }
 
 .footnotes ol {
-    margin-top: 2rem;                            /* 32px */
+    margin-top: 2em !important;                  /* 32px */
 }
 
-.footnotes li, .footnotes li p {
-    font-size: 1rem;                             /* 16px */
+.footnotes ol li p {
+    font-size: 0.9em;
     line-height: 1.75em;                         /* 28px */
     padding: 0;
     margin: 0;
@@ -551,9 +548,9 @@ figcaption h4 {
 /* ----------- Social and Sharing ----------- */
 
 .share {
-    margin: 2rem 0 0 0;                          /* 32px */
-    padding: 0.1875rem 0.5rem 0.1875rem 0.5rem;  /* 3px, 8px */
-    font-size: 1rem;                             /* 16px */
+    margin: 2em 0 0 0;                           /* 32px */
+    padding: 0.1875em 0.5em 0.1875em 0.5em;      /* 3px, 8px */
+    font-size: var(--mediumish-font-base);       /* 16px */
     border-bottom: 1px solid var(--mediumish-light-gray);
     border-top: 1px solid var(--mediumish-light-gray);
 }
@@ -571,13 +568,13 @@ figcaption h4 {
 }
 
 #share-share {
-    padding: 0.5rem 0.125rem 0.5rem 0.125rem;   /* 8px, 2px */
+    padding: 0.5em 0.125em 0.5em 0.125em;        /* 8px, 2px */
 }
 
 .popover {
     border: 0;
     border-radius: 0;
-    box-shadow: var(--mediumish-light-gray) 0px 0px 0.25rem, var(--mediumish-medium-gray) 0px 0.125rem 0.5rem;
+    box-shadow: var(--mediumish-light-gray) 0px 0px 0.25em, var(--mediumish-medium-gray) 0px 0.125em 0.5em;
     -webkit-border-radius: 0;
     -moz-border-radius: 0;
 }
@@ -587,15 +584,15 @@ figcaption h4 {
 }
 
 .popover-body ul {
-    padding: 0.5rem 0 0 0 !important;
+    padding: 0.5em 0 0 0 !important;
 }
 
 .popover-body li {
     color: var(--mediumish-secondary-text-color) !important;
-    padding: 0.375rem 1.25rem 0.375rem 1.25rem !important;
-    font-size: 0.875rem !important;
+    padding: 0.375em 1.25em 0.375em 1.25em !important;
+    font-size: var(--mediumish-font-s) !important;
     font-weight: 400 !important;
-    height: 2.7857142857em !important;
+    height: 2.786em !important;                  /* 45px */
     list-style-type: none !important;
 }
 
@@ -606,20 +603,20 @@ figcaption h4 {
 
 .popover-body li a i {
     width: 1.4375rem !important;
-    font-size: 1.1875rem !important;
+    font-size: var(--mediumish-font-base-plus) !important; /* 20px */
 }
 
 .popover-body li a div {
-    margin-left: 0.75rem !important;
-    font-size: 0.875rem !important;
-    height: 1.125rem !important;
+    margin-left: 0.75em !important;
+    font-size: 0.875em !important;
+    height: 1.125em !important;
 }
 
 /* ----------- Jumbotron and tags ----------- */
 
 .after-post-tags {
-    margin-top: 0.375rem;                        /* 6px */
-    margin-bottom: 1rem;                         /* 16px */
+    margin-top: 0.375em;                         /* 6px */
+    margin-bottom: 1em;                          /* 16px */
 }
 
 .after-post-tags .badge {
@@ -631,10 +628,10 @@ figcaption h4 {
 .badge {
     font-family: var(--mediumish-post-header-font);
     font-weight: normal;
-    font-size: 0.875rem;                         /* 14px */
-    margin-right: 0.5rem;                        /* 8px */
-    margin-bottom: 0.625rem;                     /* 10px */
-    padding: 0.75rem 1rem;                       /* 12px, 16px */
+    font-size: 0.875em;                          /* 14px */
+    margin-right: 0.5em;                         /* 8px */
+    margin-bottom: 0.625em;                      /* 10px */
+    padding: 0.75em 1em;                         /* 12px, 16px */
 }
 
 .jumbotron.fortags {
@@ -657,19 +654,19 @@ figcaption h4 {
 }
 
 .written-by .badge {
-    margin-top: 0.375rem;
+    margin-top: 0.375em;
 }
 
 /* ----------- Comments and Footer ----------- */
 
 #comments {
-    margin-top: 2rem;                            /* 32px */
+    margin-top: 2em;                             /* 32px */
 }
 
 footer {
-    padding: 1.5rem 0 1.5rem 0;                  /* 24px */
-    font-size: 0.8125rem;                        /* 13px */
-    line-height: 1.5384615385em;                 /* 20px */
+    padding: 1.846em 0 1.846em 0;                /* 24px */
+    font-size: var(--mediumish-font-xs);         /* 13px */
+    line-height: 1.538em;                        /* 20px */
     background-color: var(--mediumish-background-color);
     border-top: 1px solid var(--mediumish-medium-gray) !important;
     color: var(--mediumish-secondary-text-color);
@@ -678,21 +675,12 @@ footer {
 
 /* ----------- Pagination and Bottom Navigation ----------- */
 
-span.navigation {
-    display: inline-block;
-    font-size: 0.93rem;
-    font-weight: 700;
+.navigation {
+    font-family: var(--mediumish-primary-font);
+    font-weight: 500;
     text-align: center;
-}
-
-.bottompagination span.navigation {
-    display: block;
-    font-size: 0.93rem;
-    padding: 15px 0 0 0;
-    text-align: center;
-    margin-bottom: 0rem;
+    margin: 2em 0;
     color: var(--mediumish-secondary-text-color);
-    border-top: 1px solid var(--mediumish-medium-gray);
 }
 
 .bottompagination span.navigation i {
@@ -735,14 +723,14 @@ blockquote {
 }
 
 blockquote p {
-    letter-spacing: -0.06px;
+    letter-spacing: -0.003em !important;
 }
 
 pre {
-    margin: 3.5rem 0 0 0;                        /* 56px */
-    padding: 1.25rem;                            /* 20px */
-    font-size: 0.875rem;                         /* 14px */
-    line-height: 1.6rem;                         /* 25.6px */
+    margin: 4em 0 0 0;                           /* 56px */
+    padding: var(--mediumish-space-loose);       /* 20px */
+    font-size: var(--mediumish-font-s);          /* 14px */
+    line-height: 1.829em;                        /* 25.6px */
     background-color: var(--mediumish-light-gray);
     box-sizing: border-box;
     color: var(--mediumish-primary-text-color);
@@ -782,14 +770,14 @@ code {
 /* ----------- Tables ----------- */
 
 table {
-    margin: 3.5rem 0 1.5rem 0;                   /* 56px, 24px */
-    font-size: 1.0rem;                           /* 16px */
+    margin: 3.5em 0 1.5em 0;                     /* 56px, 24px */
+    font-size: var(--mediumish-font-base);       /* 16px */
     font-family: var(--mediumish-table-font);
 }
 
 td, th {
     padding: 0.5em 1em 0.75em 0;                 /* 8px, 16px, 12px */
-    line-height: 1.25em;                         /* 20px */
+    line-height: var(--mediumish-space-normal);  /* 20px */
     font-weight: 400;
     vertical-align: top;
 }
@@ -817,7 +805,7 @@ th {
 }
 
 .alertbar input[type="email"] {
-    font-size: 0.85rem;
+    font-size: var(--mediumish-font-xs);         /* 13px*/
     padding: 3px 5px 3px 10px;
     border-top-left-radius: 3px;
     border-bottom-left-radius: 3px;
@@ -834,7 +822,7 @@ th {
     border: 1px solid var(--mediumish-link-color);
     color: var(--mediumish-reversed-color);
     fill: var(--mediumish-reversed-color);
-    font-size: 0.85rem;
+    font-size: var(--mediumish-font-xs);         /* 13px*/
     border-radius: 0;
     padding: 4px 10px;
     border-top-right-radius: 3px;
