@@ -1,18 +1,18 @@
 {{ define "header"}}
     {{- partial "_shared/navbar.html" . -}}
+    {{ if .Site.Data.carousel }}
+    <div class="row">
+        <div class="col">
+            {{- partial "_shared/carousel.html" . -}}
+        </div>
+    </div>
+    {{ end }}
 {{ end }}
 
 {{ define "main" }}
     <!-- Begin Homepage
     ================================================== -->
     <section>
-        {{ if .Site.Data.carousel }}
-        <div class="row">
-            <div class="col">
-                {{- partial "_shared/carousel.html" . -}}
-            </div>
-        </div>
-        {{ end }}
         <div class="row container">
             <div class="col col-7">
                 <div class="sticky-top">

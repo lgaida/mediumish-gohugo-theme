@@ -1,11 +1,11 @@
 <!DOCTYPE html>
 <html lang="{{ .Site.LanguageCode }}">
     {{- partial "_shared/head.html" . -}}
-    <body>
+    <body class='hugo-{{ .Kind }}{{ if (ne .Section "")}} {{ .Section }}{{ end }}'>
         <header>
             {{- block "header" . }}{{- end }}
         </header>
-        <main class="hugo-{{ .Kind }} {{ .Section }} container d-flex flex-column justify-content-center align-items-center">
+        <main class="container d-flex flex-column justify-content-center align-items-center">
             {{- block "main" . }}{{- end }}
         </main>
         {{- block "aside" . }}{{- end }}

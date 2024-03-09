@@ -1,15 +1,10 @@
 <!-- Carousel -->
 <div id="homepageCarousel" class="carousel slide carousel-fade" data-ride="carousel"  data-wrap="false" data-interval="5000">
-    <div class="carousel-indicators">
-    {{ range $index, $val := .Site.Data.carousel }}
-        <button type="button" data-bs-target="#homepageCarousel" data-bs-slide-to="{{ $index }}"{{ if not $index }} class="active"{{ end }}></button>
-    {{ end }}
-    </div>
     <div class="carousel-inner">
         {{ range $index, $val := .Site.Data.carousel }}
         <div class="carousel-item{{ if not $index }} active{{ end }}">
             <img class="d-block w-100" src="{{ $val.image }}" alt="{{ $val.title }}"/>
-            <div class="carousel-caption d-none d-md-block">
+            <div class="carousel-caption d-none d-sm-block">
                 <h1 class="carousel-text">{{ $val.title }}</h1>
                 <h2 class="carousel-text">{{ $val.summary }}</h2>
             </div>

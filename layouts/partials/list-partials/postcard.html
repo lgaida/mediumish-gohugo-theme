@@ -10,8 +10,8 @@
             {{end}}
         </a>
     </header>
-    <div class="card-body">
-        <div class="thumb d-flex">
+    <div class="card-body d-flex flex-column">
+        <div class="thumb d-flex align-items-center me-auto">
             {{ if .GetTerms "authors" }}
                 {{ range first 1 (.GetTerms "authors") }}
             <a href='/authors/index.html#{{ .Data.Term }}'>

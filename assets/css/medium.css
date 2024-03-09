@@ -17,6 +17,7 @@ https://levelup.gitconnected.com/3-tips-to-sharing-beautiful-tables-on-medium-po
     --mediumish-post-summary-font: "Helvetica Neue", Helvetica, Arial, sans-serif;       /* Post summary at top of page */
     --mediumish-post-header-font: "Helvetica Neue", Helvetica, Arial, sans-serif;        /* Post metadata at top of page */
     --mediumish-post-font: Georgia, Cambria, "Times New Roman", Times, serif;            /* Post body */
+    --mediumish-navbar-font: "Helvetica Neue", Helvetica, Arial, sans-serif;             /* Navbar font */
     --mediumish-table-font: "Helvetica Neue", Helvetica, Arial, sans-serif;              /* Tables */
     --mediumish-code-font: monospace, sans-serif, "Courier New", Courier;                /* Preformatted blocks, code blocks, and inline `<code>` */
     --mediumish-background-color: rgb(249, 249, 249);                                  /* Written-by and More-From asides */
@@ -37,8 +38,10 @@ https://levelup.gitconnected.com/3-tips-to-sharing-beautiful-tables-on-medium-po
     --mediumish-font-l: 1.5rem;                            /* 24px Heading 1, page titles, author card/written by titles */
     --mediumish-font-xl: 2rem;                             /* 32px Aside index numbers */
     --mediumish-font-xxl: 2.625rem;                        /* 42px Post headlines */
-    --mediumish-space-normal: 1.25em;                      /* Normal line spacing */
-    --mediumish-space-loose: 1.429em;
+    --mediumish-font-jumbo: 3.625rem;                      /* 42px Carousel title */
+    --mediumish-space-tight: 1.25em;                       /* Normal line spacing */
+    --mediumish-space-normal: 1.429em;
+    --mediumish-space-loose: 1.6em;
 }
 
 html {
@@ -48,8 +51,18 @@ html {
 body {
     color: var(--mediumish-primary-text-color);
     font-family: var(--mediumish-primary-font);
+    font-size: var(--mediumish-font-base);
     font-style: normal;
     font-weight: 400;
+}
+
+main p {
+    margin: 2.675em 0 -0.575em 0;
+}
+
+section p {
+    margin-top: 0;
+    margin-bottom: 0.8em;
 }
 
 /* ----------- Containers ----------- */
@@ -74,21 +87,67 @@ aside.more-from > section
     padding: 0 0.875rem 0 0.875rem;              /* 14px */
 }
 
+@media (min-width:1200px) {
+    .container, .container-lg, .container-md, .container-sm, .container-xl {
+        max-width: 1140px;
+    }
+}
+
+@media (min-width:992px) and (max-width: 1199px) {
+    .container, .container-lg, .container-md, .container-sm {
+        max-width: 960px;
+    }
+}
+
+@media (min-width:768px) and (max-width: 991px) {
+    .container, .container-md, .container-sm {
+        max-width: 720px;
+    }
+}
+
+@media (min-width:576px) and (max-width: 767px){
+    .container, .container-sm {
+        max-width: 540px;
+    }
+}
+
 /* ----------- Navigation ---------- */
 
 .mediumnavigation {
+    padding: 0;
     background: rgba(255, 255, 255, .97);
     box-shadow: 0 2px 2px -2px var(--mediumish-medium-gray);
+    font-family: var(--mediumish-navbar-font);
+    font-size: var(--mediumish-font-s);
+    font-weight: 400;
     transition: top 0.2s ease-in-out;
 }
 
 .mediumnavigation .navbar-brand {
-    font-weight: 500;
+    padding: 0;
 }
 
 .mediumnavigation .navbar-brand img {
     margin-right: 5px;
     max-height: 30px;
+}
+
+.mediumnavigation .nav-item {
+    padding: 30px 0;
+    line-height: 15px;
+}
+
+.mediumnavigation .navbar-toggler {
+    height: 36px;
+}
+
+.mediumnavigation .nav-link {
+    padding: 0;
+}
+
+.mediumnavigation .dropdown-menu {
+    margin: 8px 0 0;
+    border: 1px solid var(--mediumish-light-gray);
 }
 
 .mediumnavigation .form-control {
@@ -115,15 +174,6 @@ aside.more-from > section
     color: var(--mediumish-link-color);
 }
 
-.mediumnavigation .dropdown-menu {
-    margin: 0.5rem 0 0;
-    border: 1px solid var(--mediumish-light-gray);
-}
-
-.mediumnavigation .nav-item, .dropdown-menu {
-    font-size: var(--mediumish-font-s);
-}
-
 .mediumnavigation .search-icon {
     margin-left: -40px;
     margin-top: 3px;
@@ -133,9 +183,14 @@ aside.more-from > section
 
 @media (min-width:992px) {
     .navbar-expand-lg .navbar-nav .nav-link {
-        padding-right: 0.8rem;
-        padding-left: 0.8rem;
+        padding-right: 12px;
+        padding-left: 12px;
     }
+}
+
+.hugo-home .navbar.mediumnavigation {
+    background-color: rgb(255, 255, 255, 0.8) !important;
+    border-bottom: 1px solid var(--mediumish-primary-text-color);
 }
 
 /* ----------- Headings ----------- */
@@ -149,7 +204,7 @@ h1, h2, h3, h4, h5, h6 {
 h1 {
     margin: 1.95em 0 0.28em 0;                   /* 46.8px 6.72px */
     font-size: var(--mediumish-font-l);          /* 24px */
-    line-height: var(--mediumish-space-normal);  /* 30px */
+    line-height: var(--mediumish-space-tight)    /* 30px */
     font-weight: 600;
     letter-spacing: -0.016em;
 }
@@ -173,77 +228,73 @@ h3 {
 
 /* ----------- Homepage and Carousel ------------ */
 
-.hugo-home > section {
+.hugo-home section {
     width: 100%;
     max-width: 100% !important;
 }
 
 .hugo-home h1 {
-    margin-top: 1.167em;                         /* 28px */
+    margin-top: 0;
 }
 
 .carousel-caption {
-    text-shadow: 0.1em 0.1em 0.5em var(--mediumish-primary-text-color);
+    left: 3.75em;
+    text-shadow: 0.1em 0.1em 0.25em var(--mediumish-primary-text-color);
 }
 
-.carousel-text {
+h1.carousel-text {
     color: var(--mediumish-reversed-color);
     font-weight: 400;
+    font-family: var(--mediumish-post-font);
+    font-size: var(--mediumish-font-xxl);
+    line-height: 1em;
+    text-align: left;
 }
 
-/* ----------- Posts ------------ */
+h2.carousel-text {
+    color: var(--mediumish-reversed-color);
+    font-size: var(--mediumish-font-m);
+    font-weight: 400;
+    text-align: left;
+}
 
-.hugo-page article {
+
+/* ----------- General article styles ----------- */
+
+article {
     margin-bottom: 4.25em;                       /* 68px */;
     font-size: var(--mediumish-font-base-plus);  /* 20px */
-    line-height: 1.6em;                          /* 32px */
+    line-height: var(--mediumish-space-loose);   /* 32px */
     color: var(--mediumish-primary-text-color);
     font-family: var(--mediumish-post-font);
     letter-spacing: -0.003em;
     word-break: break-word;
 }
 
-.hugo-page article header {
+article header {
     font-family: var(--mediumish-post-header-font);
 }
 
-.hugo-page article header h1 {
-    margin: 1.191em 0 0.762em 0;                 /* 50px, 32px */
-    font-size: var(--mediumish-font-xxl);        /* 42px */
-    line-height: 1.238em;                        /* 52px */
-    font-family: var(--mediumish-post-headline-font);
-    font-weight: 700;
-    letter-spacing: -0.011em;
+article header, section header {
+    margin-bottom: 2rem;
 }
 
-.hugo-page article header h2 {
-    margin: -0.909em 0 1.091em 0;                /* -20px, 24px */
-    line-height: 1.273em;                        /* 28px */
-    color: var(--mediumish-secondary-text-color);
-    font-family: var(--mediumish-post-summary-font);
-    font-weight: 400;
-}
-
-.hugo-page article header .author {
-    margin: 0 0 0.125em 0;                       /* 2px */
-    font-size: var(--mediumish-font-base);       /* 16px */
-    height: 1.5em;                               /* 24px */
-    line-height: 1.5em;                          /* 24px */
-}
-
-.hugo-page article header .post-date {
-    font-size: var(--mediumish-font-s);          /* 14px */
-    line-height: var(--mediumish-space-loose);   /* 20px */
-}
-
-.hugo-page article h1 {
-    margin: 1.95em 0 -0.28em 0;                  /*  46.8px, -6.72px */
+article header h1,
+section header h1 {
+    margin: 1.463em 0 -0.28em 0;                  /*  46.8px, -6.72px */
+    font-size: var(--mediumish-font-xl);
     letter-spacing: -0.016em;
 }
 
 .hugo-page article h1 + p,
 .hugo-page article h2 + p,
-.hugo-page article h3 + p {
+.hugo-page article h3 + p,
+.hugo-page article h1 + ol,
+.hugo-page article h2 + ol,
+.hugo-page article h3 + ol,
+.hugo-page article h1 + ul,
+.hugo-page article h2 + ul,
+.hugo-page article h3 + ul {
     margin-top: 0.94em !important;               /* 18.8px */
 }
 
@@ -262,92 +313,121 @@ h3 {
     list-style: disc;
 }
 
+/* ----------- Posts ------------ */
+
+.hugo-page.posts article header h1 {
+    margin: 1.463em 0 0.762em 0;                 /* 50px, 32px */
+    font-size: var(--mediumish-font-xxl);        /* 42px */
+    line-height: 1.238em;                        /* 52px */
+    font-family: var(--mediumish-post-headline-font);
+    font-weight: 700;
+    letter-spacing: -0.011em;
+}
+
+.hugo-page.posts article header h2 {
+    margin: -0.909em 0 1.091em 0;                /* -20px, 24px */
+    line-height: 1.273em;                        /* 28px */
+    color: var(--mediumish-secondary-text-color);
+    font-family: var(--mediumish-post-summary-font);
+    font-weight: 400;
+}
+
+.hugo-page.posts article header .author {
+    margin: 0 0 0.125em 0;                       /* 2px */
+    font-size: var(--mediumish-font-base);       /* 16px */
+    height: 1.5em;                               /* 24px */
+    line-height: 1.5em;                          /* 24px */
+}
+
+.hugo-page.posts article header .post-date {
+    font-size: var(--mediumish-font-s);          /* 14px */
+    line-height: var(--mediumish-space-normal);  /* 20px */
+}
+
 /* ----------- Post cards ----------- */
 
-.card {
-    padding: 0 0 4.308em 0;                      /* 56px */
-    line-height: 1.538em;                        /* 20px */
+.card, .card-header, .card-body, .card-title, .card-footer {
+    margin: 0;
+    padding: 0;
     background-color: transparent;
     border: 0;
-    color: var(--mediumish-secondary-text-color);
+}
+
+article.posts.card {
+    padding-bottom: 4.308em;                     /* 56px */
     font-size: var(--mediumish-font-xs);         /* 13px */
+    line-height: 1.538em;                        /* 20px */
+    color: var(--mediumish-secondary-text-color);
     font-weight: 400;
-    height: 100%;
     letter-spacing: normal;
 }
 
-.card-header {
-    border: 0;
-    padding: 0;
+.posts.card .card-header {
+    margin-bottom: 1.846em;                         /* 24px */
 }
 
-.card-header img {
+.posts.card .card-header img {
     min-height: 162px;
     max-height: 162px;
     object-fit: cover;
 }
 
-.card-body {
-    margin: 1.846em 0 0 0;                       /* 24px */
-    padding: 0 0 1.231em 0;                      /* 16px */
+.posts.card .card-body {
+    padding-bottom: 1.231em;                     /* 16px */
 }
 
-.card-body .author {
+.posts.card .card-body .author thumb {
+    margin-bottom: 3px;
+}
+
+.posts.card .card-body .author {
     padding-right: 0.25rem;                      /* 4px */
     font-family: var(--mediumish-post-header-font);
 }
 
-.card-body .card-title {
-    margin: 0;
-    padding: 0;
+.posts.card .card-body .card-title {
+    margin-top: 0.8em;                           /* 16px */
     font-size: var(--mediumish-font-base-plus);  /* 20px */
     line-height: 1.2em;                          /* 24px */
     font-family: var(--mediumish-post-headline-font);
     font-weight: 700;
+    height: 2.4em;                               /* 48px */
 }
 
-.card-text {
+.posts.card .card-text {
     font-family: var(--mediumish-post-summary-font);
     padding-top: 0.5em;                          /* 8px */
     font-size: var(--mediumish-font-base);       /* 16px */
-    line-height: var(--mediumish-space-normal);     /* 20px */
+    line-height: var(--mediumish-space-tight);   /* 20px */
 }
 
-.card-footer {
-    padding: 0;
-    background-color: transparent;
-    border: 0;
+.posts.card .card-footer {
     font-family: var(--mediumish-post-header-font);
 }
 
 /* ----------- Author cards ----------- */
 
-.authors .card {
+section.authors.card {
     margin-top: 3.429em;                         /* 48px */
     margin-bottom: 1.143em;                      /* 16px */
-    padding-bottom: 0;
-    font-size: var(--mediumish-font-s) !important; /* 14px */
-    line-height: var(--mediumish-space-loose);   /* 20px */
+    color: var(--mediumish-primary-text-color);
+    font-size: var(--mediumish-font-s);          /* 14px */
+    line-height: var(--mediumish-space-normal);  /* 20px */
 }
 
-.authors .card .card-title {
-    margin-top: 0;
+section.authors.card .card-title {
     font-size: var(--mediumish-font-l);          /* 24px */
-    line-height: var(--mediumish-space-normal);  /* 30px */
+    line-height: var(--mediumish-space-tight);   /* 30px */
     font-weight: 500;
 }
 
-.authors .card .card-subtitle {
+section.authors.card .card-subtitle {
     margin-top: 0.571em;                         /* 8px */
-    line-height: var(--mediumish-space-loose);   /* 20px */
-    color: var(--mediumish-primary-text-color);
 }
 
-.authors .card .card-text {
+section.authors.card .card-text {
     margin-top: 1.143em;                         /* 16px */
     font-size: var(--mediumish-font-s);          /* 14px */
-    line-height: 1.429;                          /* 20px */
-    color: var(--mediumish-primary-text-color);
 }
 
 /* ----------- Asides (written by, more from, featured) ----------- */
@@ -355,7 +435,7 @@ h3 {
 aside.written-by {
     padding: 4.5em 1.5rem 0 1.5rem;              /* 72px, 24px, 24px */
     font-size: var(--mediumish-font-s);          /* 14px */
-    line-height: var(--mediumish-space-loose);   /* 20px */
+    line-height: var(--mediumish-space-normal);  /* 20px */
     background-color: var(--mediumish-background-color);
     font-weight: 400;
 }
@@ -393,18 +473,19 @@ aside.more-from h2 {
     margin-top: 2.5em;                           /* 40px */
     margin-bottom: 2em;                          /* 32px */
     font-size: var(--mediumish-font-base);       /* 16px */
-    line-height: var(--mediumish-space-normal);  /* 20px */
+    line-height: var(--mediumish-space-tight);   /* 20px */
     font-weight: 500;
 }
 
 aside.featured h1 {
-    margin-top: 2rem !important;                 /* 32px */
+    margin-top: 0.5rem !important;               /* 8px */
+    margin-bottom: 1.5em;                        /* 24px */
     font-size: var(--mediumish-font-base);       /* 16px */
     font-weight: 500;
 }
 
 aside.featured .idx {
-    margin: 0.156em 1rem 0 0;                    /* 5px, 16px */
+    margin: -0.312em 1rem 0 0;                   /* 10px, 16px */
     font-size: var(--mediumish-font-xl);         /* 32px */
     line-height: 1.1875em;                       /* 38px */
     width: 2.5rem;                               /* 40px */
@@ -414,25 +495,27 @@ aside.featured .idx {
     letter-spacing: -0.014em;
 }
 
-aside.featured .card {
-    margin: 1.231em 0 0.615em 0;                 /* 16px, 8px */
-    padding-bottom: 0;
+aside.featured .posts.card {
+    padding: 0;
+    margin-bottom: 1.847em;                      /* 24px */
 }
 
-aside.featured .author {
-    font-weight: 500;
+aside.featured .posts.card .author {
+    font-weight: 400;
 }
 
-aside.featured .card-title {
+aside.featured .posts.card .card-title {
+    margin-top: 0.5em;                           /* 8px */
     margin-bottom: 0.5em;                        /* 8px */
     font-size: var(--mediumish-font-base);       /* 16px */
-    line-height: var(--mediumish-space-normal);  /* 20px */
+    line-height: var(--mediumish-space-tight);   /* 20px */
+    height: auto;
 }
 
-aside.featured .card-body {
-    margin-top: 0;
+aside.featured .posts.card .card-body {
     padding-bottom: 0;
 }
+
 
 aside.featured .card-header,
 aside.featured .card-text,
@@ -479,37 +562,37 @@ a.navbar-brand img {
 article header .thumb img {
     margin-right: 0.75rem;                      /* 12px */
     margin-bottom: 0;
-    height: 3rem !important;                    /* 48px */
-    width: 3rem;                                /* 48px */
-    min-width: 3rem;                            /* 48px */
+    height: 48px !important;
+    width: 48px;
+    min-width: 48px;
 }
 
 /* Author pages and Written-by aside */
 .written-by .thumb img,
 .authors .card .thumb img {
-    margin-bottom: 1em;                         /* 16px */
-    height: 4.75rem !important;
-    width: 4.75rem;                             /* 76px */
-    min-width: 4.75rem;                         /* 76px */
+    margin-bottom: 1em;                          /* 16px */
+    height: 76px !important;
+    width: 76px;
+    min-width: 76px;
 }
 
 /* More From and Post list index pages */
-.more-from article .thumb img,
+.more-from article.hugo-page .thumb img,
 article .thumb img {
+    margin-bottom: 0.1875rem;                    /* 3px */
     margin-right: 0.5rem;                        /* 8px */
-    margin-bottom: 1em;                          /* 16px */
-    height: 1.4375rem !important;                /* 23px */
-    width: 1.4375rem;                            /* 23px */
-    min-width: 1.4375rem;                        /* 23px */
+    height: 23px !important;
+    width: 23px;
+    min-width: 23px;
 }
 
 /* Featured posts on homepage */
 aside.featured .thumb img {
     margin-right: 0.5rem;                        /* 8px */
-    margin-bottom: 0.5rem;                       /* 8px */
-    height: 1.25rem !important;                  /* 20px */
-    width: 1.25rem;                              /* 20px */
-    min-width: 1.25rem;                          /* 20px */
+    margin-bottom: 0.1875rem;                    /* 8px */
+    height: 20px !important;
+    width: 20px;
+    min-width: 20px;
 }
 
 /* ----------- Figures, Captions, and Footnotes ---------- */
@@ -522,7 +605,7 @@ figure {
 figcaption h4 {
     margin: 0.625rem auto 0 auto;                /* 10px */
     font-size: var(--mediumish-font-s);          /* 14px */
-    line-height: var(--mediumish-space-loose);   /* 20px */
+    line-height: var(--mediumish-space-normal);  /* 20px */
     color: var(--mediumish-secondary-text-color);
     display: block;
     font-weight: 400;
@@ -540,7 +623,7 @@ figcaption h4 {
 
 .footnotes ol li p {
     font-size: 0.9em;
-    line-height: 1.75em;                         /* 28px */
+    line-height: var(--mediumish-space-loose);   /* 28px */
     padding: 0;
     margin: 0;
 }
@@ -728,7 +811,7 @@ blockquote p {
 
 pre {
     margin: 4em 0 0 0;                           /* 56px */
-    padding: var(--mediumish-space-loose);       /* 20px */
+    padding: var(--mediumish-space-normal);      /* 20px */
     font-size: var(--mediumish-font-s);          /* 14px */
     line-height: 1.829em;                        /* 25.6px */
     background-color: var(--mediumish-light-gray);
@@ -777,7 +860,7 @@ table {
 
 td, th {
     padding: 0.5em 1em 0.75em 0;                 /* 8px, 16px, 12px */
-    line-height: var(--mediumish-space-normal);  /* 20px */
+    line-height: var(--mediumish-space-tight);   /* 20px */
     font-weight: 400;
     vertical-align: top;
 }
@@ -866,7 +949,13 @@ th {
     text-align: center !important;
 }
 
-/* ----------- Other elements ----------- */
+/* ----------- Typography and other elements ----------- */
+
+h1, h2, h3, p, li, td {
+    font-feature-settings: 'kern' 1, 'liga' 1, 'hlig' 1, 'dlig' 1, 'clig' 1, 'cswh' 1, 'calt' 1, 'onum' 1, 'hist' 1, 'aalt' 1, 'ss05' 1 !important;
+    font-variant-ligatures: common-ligatures !important;
+    font-kerning: normal !important;
+}
 
 .short-summary {
     display: -webkit-box;
