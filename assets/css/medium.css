@@ -124,10 +124,11 @@ aside.more-from > section
 }
 
 .mediumnavigation .navbar-brand {
-    padding: 0;
+    padding: 20px 0;
 }
 
 .mediumnavigation .navbar-brand img {
+    margin-left: 8px;
     margin-right: 5px;
     max-height: 30px;
 }
@@ -138,6 +139,7 @@ aside.more-from > section
 }
 
 .mediumnavigation .navbar-toggler {
+    margin-right: 8px;
     height: 36px;
 }
 
@@ -146,7 +148,7 @@ aside.more-from > section
 }
 
 .mediumnavigation .dropdown-menu {
-    margin: 8px 0 0;
+    margin: 8px 16px 0 0;
     border: 1px solid var(--mediumish-light-gray);
 }
 
@@ -204,7 +206,7 @@ h1, h2, h3, h4, h5, h6 {
 h1 {
     margin: 1.95em 0 0.28em 0;                   /* 46.8px 6.72px */
     font-size: var(--mediumish-font-l);          /* 24px */
-    line-height: var(--mediumish-space-tight)    /* 30px */
+    line-height: var(--mediumish-space-tight);   /* 30px */
     font-weight: 600;
     letter-spacing: -0.016em;
 }
@@ -478,9 +480,9 @@ aside.more-from h2 {
 }
 
 aside.featured h1 {
-    margin-top: 0.5rem !important;               /* 8px */
+    margin-top: 0.1em !important;                /* 8px */
     margin-bottom: 1.5em;                        /* 24px */
-    font-size: var(--mediumish-font-base);       /* 16px */
+    font-size: var(--mediumish-font-base-plus);  /* 16px */
     font-weight: 500;
 }
 

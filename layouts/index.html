@@ -14,13 +14,11 @@
     ================================================== -->
     <section>
         <div class="row container">
-            <div class="col col-7">
-                <div class="sticky-top">
-                    <!-- Page Content -->
-                    {{ .Content }}
-                </div>
+            <div class="col-sm-7 container">
+                <!-- Page Content -->
+                {{ .Content }}
             </div>
-            <aside class="featured col col-5">
+            <aside class="featured col-sm-5 container">
                 <h1>Featured Content</h1>
                 {{ range $index, $val := (where .Site.Pages "Params.Featured" "==" true)}}
                     <div class="d-flex align-items-start">
