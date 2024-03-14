@@ -1,0 +1,39 @@
+{{ define "header"}}
+    {{- partial "_shared/navbar.html" . -}}
+{{ end }}
+
+{{ define "aside-top"}}    
+    {{- partial "_shared/tagbar.html" . -}}
+{{ end }}
+
+{{ define "main" }}
+    <!-- Begin Index
+    ================================================== -->
+    <section>
+        <header>
+            {{- partial "_shared/title.html" . -}}
+            <h3>{{ .Data.Singular | title }} &#8729; {{ len (.Data.Pages) }} posts</h3>
+        </header>
+        <hr/>
+        <h2>Posts</h2>
+        <!-- Page Content -->
+        <div class="row row-cols-1 row-cols-md-3 g-4 mt-3">
+            {{ $post_paginator := .Paginate (.Pages) 6 }}
+            {{ with $post_paginator }}
+                {{ range .Pages }}
+                <div class="col">
+                    {{- partial "list-partials/postcard.html" . -}}
+                </div>
+                {{ end }}
+            {{ end }}
+            {{- partial "list-partials/pagination.html" $post_paginator -}}
+        </div>
+    </section>
+    <!-- End Index
+        ================================================== -->
+    {{- partial "_shared/alertbar.html" . -}}
+{{ end }}
+
+{{ define "footer"}}
+    {{- partial "_shared/footer.html" . -}}
+{{ end }}

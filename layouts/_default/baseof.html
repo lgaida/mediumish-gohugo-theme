@@ -5,10 +5,11 @@
         <header>
             {{- block "header" . }}{{- end }}
         </header>
+        {{- block "aside-top" . }}{{- end }}
         <main class="container d-flex flex-column justify-content-center align-items-center">
             {{- block "main" . }}{{- end }}
         </main>
-        {{- block "aside" . }}{{- end }}
+        {{- block "aside-bottom" . }}{{- end }}
         <footer>
             {{- block "footer" . }}{{- end }}
         </footer>

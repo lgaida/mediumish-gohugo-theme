@@ -94,14 +94,13 @@
     {{- partial "_shared/alertbar.html" . -}}
 {{ end }}
 
-{{ define "aside" }}
+{{ define "aside-bottom" }}
     {{ if .GetTerms "authors" }}
         {{ range first 1 (.GetTerms "authors") }}
             {{- partial "single-partials/writtenby.html" . -}}
         {{ end }}
     {{ end }}
     {{- partial "_shared/morefrom.html" . -}}
-    {{- partial "_shared/jumbotron.html" . -}}
 {{ end }}
 
 {{ define "footer"}}

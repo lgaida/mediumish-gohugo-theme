@@ -150,4 +150,18 @@ jQuery(document).ready(function($){
       const sharePopover = new bootstrap.Popover(sharePopoverEl, popoverOpts);
       sharePopoverEl.addEventListener('click', function(){$('[data-toggle="tooltip"]').tooltip('hide');});
     }
+
+    // Enable tagbar scroll buttons
+    $("#scrollLeftButton").on('click', function () {
+      $('#tagBar').animate(
+        { scrollLeft: "-=300" }
+      );
+    });
+
+    $('#scrollRightButton').on('click', function () {
+      $('#tagBar').animate(
+        { scrollLeft: "+=300" }
+      );
+    });
+
 });

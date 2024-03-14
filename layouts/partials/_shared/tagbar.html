@@ -1,0 +1,16 @@
+<!--  Site tags
+================================================== -->
+<aside class="site-tags d-flex">
+	<button id="scrollLeftButton">&lang;</button>
+	<div class="scrollLeftDiv"></div>
+	<div id="tagBar">
+		&nbsp; &nbsp; &nbsp; &nbsp;
+		{{ $title := .Page.Title }}
+		{{ range (.Site.Taxonomies.tags.ByCount)  }}
+	    <a class='badge rounded-pill text-decoration-none{{ if (eq .Page.Title $title) }} active-tag{{ end }}'{{ if (ne .Name $title) }} href='{{ .Page.RelPermalink }}'{{ end }}>{{ .Page.Title }}</a>
+		{{ end }}
+		&nbsp; &nbsp; &nbsp; &nbsp;
+	</div>
+	<div class="scrollRightDiv"></div>
+	<button id="scrollRightButton">&rang;</button>
+</aside>
