@@ -424,6 +424,7 @@ article.posts.card {
 
 .posts.card .card-body {
     padding-bottom: 1.231em;                     /* 16px */
+    height:  13.231em;
 }
 
 .posts.card .card-body .author thumb {
@@ -437,11 +438,11 @@ article.posts.card {
 
 .posts.card .card-body .card-title {
     margin-top: 0.8em;                           /* 16px */
+    padding-bottom: 0.227em;                     /* 4.54px; adjust to give 2-line titles a little breathing room */
     font-size: var(--mediumish-font-base-plus);  /* 20px */
     line-height: 1.2em;                          /* 24px */
     font-family: var(--mediumish-post-headline-font);
     font-weight: 700;
-    height: 2.4em;                               /* 48px */
 }
 
 .posts.card .card-text {
@@ -564,6 +565,7 @@ aside.featured .posts.card .card-title {
 
 aside.featured .posts.card .card-body {
     padding-bottom: 0;
+    height: auto;
 }
 
 
