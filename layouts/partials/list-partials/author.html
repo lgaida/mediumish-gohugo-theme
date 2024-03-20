@@ -1,0 +1,26 @@
+<!-- Begin Author -->
+<section class="hugo-{{ .Kind }} {{ .Section }} card" id="{{ .Data.Term }}" data-permalink="{{ .RelPermalink }}">
+    <div class="card-body">
+        <div class="thumb d-flex">
+            <a href='/authors/index.html#{{ .Data.Term }}'>
+                <img src='{{ default "/images/author.png" .Params.thumbnail }}' alt="{{ .Params.name }}"/>
+            </a>
+        </div>
+        <div class="card-title">
+            <a href='/authors/index.html#{{ .Data.Term }}' class="primary-text-color text-decoration-none">{{ .Params.name }}</a>
+        </div>
+        <div class="card-subtitle">{{ .Params.title }}
+            {{ with .Params.Linkedin }}
+            <a class="social-icon" target='_blank' href='https://linkedin.com/in/{{ . }}'><i class="fab fa-linkedin"></i></a>
+            {{ end }}
+            {{ with .Params.Twitter }}
+            <a class="social-icon" target='_blank' href='https://twitter.com/{{ . }}'><i class="fab fa-twitter"></i></a>
+            {{ end }}
+            {{ with .Params.Email }}
+            <a class="social-icon" target='_blank' href='mailto:{{ . }}'><i class="fa fa-envelope"></i></a>
+            {{ end }}
+        </div>
+        <div class="card-text">{{ .Content}}</div>
+    </div>
+</section>
+<!-- End Author -->

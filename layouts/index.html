@@ -1,33 +1,41 @@
 {{ define "header"}}
     {{- partial "_shared/navbar.html" . -}}
+    {{ if .Site.Data.carousel }}
+    <div class="row">
+        <div class="col">
+            {{- partial "_shared/carousel.html" . -}}
+        </div>
+    </div>
+    {{ end }}
 {{ end }}
 
 {{ define "main" }}
-    <div class="main-content">
-        <header class="text-center">
-            {{ with .Site.Params.index.picture }}
-                <img src="{{ . | urlize | relURL }}" class="rounded-circle text-center index-image">
-            {{ end }}
-            <h1 class="index-title">{{ .Site.Params.index.title }}</h1>
-        </header>
+    <!-- Begin Homepage
+    ================================================== -->
+    <section>
+        <div class="row container">
+            <div class="col-md-7 mb-4 container">
+                <!-- Page Content -->
+                {{ .Content }}
+            </div>
+            <aside class="featured col-md-5 container">
+                <h1>Featured Content</h1>
+                {{ range $index, $val := (where .Site.Pages "Params.Featured" "==" true)}}
+                    <div class="d-flex align-items-start">
+                        <div class="idx">
+                            {{ add $index 1 | printf "%02d" }}
+                        </div>
+                        {{- partial "list-partials/postcard.html" . -}}
+                    </div>
+                {{end}}
+            </aside>
+        </div>
+    </section>
+    <!-- End Homepage
+        ================================================== -->
+        {{- partial "_shared/alertbar.html" . -}}
+{{ end }}
 
-        <section class="text-center">
-            {{ with .Site.Params.index.subtitle }}
-            <h3 class="index-sub">{{ . }}</h3>
-            {{ end }}
-            {{ with .Site.Params.index.mdtext }}
-            <h6 class="index-text">{{ . | markdownify }}</h6>
-            {{ end }}
-        </section>
-    </div>
-    {{- partial "_shared/social.html" . -}}
-    {{ if isset .Site.Params.index "alertbar" }}
-    	{{ if .Site.Params.index.alertbar }}
-            {{- partial "_shared/alertbar.html" . -}}
-        {{ end }}
-    {{ end }}
-{{end}}
-
-{{ define "footer" }}
+{{ define "footer"}}
     {{- partial "_shared/footer.html" . -}}
-{{end}}
+{{ end }}

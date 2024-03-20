@@ -2,18 +2,22 @@
     {{- partial "_shared/navbar.html" . -}}
 {{ end }}
 
+{{ define "aside-top"}}    
+    {{- partial "_shared/tagbar.html" . -}}
+{{ end }}
+
 {{ define "main" }}
     <!-- Begin Index
     ================================================== -->
     <section>
         <header>
             {{- partial "_shared/title.html" . -}}
+            <h3>{{ .Data.Singular | title }} &#8729; {{ len (.Data.Pages) }} posts</h3>
         </header>
+        <hr/>
+        <h2>Posts</h2>
         <!-- Page Content -->
-        <div>
-            {{ .Content }}
-        </div>
-        <div class="row row-cols-1 row-cols-md-2 g-4 mt-3">
+        <div class="row row-cols-1 row-cols-md-3 g-4 mt-3">
             {{ $post_paginator := .Paginate (.Pages) 6 }}
             {{ with $post_paginator }}
                 {{ range .Pages }}
@@ -28,10 +32,6 @@
     <!-- End Index
         ================================================== -->
     {{- partial "_shared/alertbar.html" . -}}
-{{ end }}
-
-{{ define "aside "}}
-    {{- partial "_shared/jumbotron.html" . -}}
 {{ end }}
 
 {{ define "footer"}}

@@ -1,0 +1,42 @@
+<article class="hugo-{{ .Kind }} {{ .Section }} card" data-permalink="{{ .RelPermalink }}">
+    <header class="card-header">
+        <a href="{{ .Permalink }}">
+            {{if isset .Params "image"}}
+            <img class="card-img-top rounded-0" src="{{ .Params.Image | relURL }}" alt="A thumbnail image">
+            {{ end }}
+            {{$images := .Resources.ByType "image"}}
+            {{with $images.GetMatch "*cover*" }}
+            <img class="card-img-top rounded-0" src="{{ .Permalink }}" alt="A thumbnail image">
+            {{end}}
+        </a>
+    </header>
+    <div class="card-body d-flex flex-column">
+        <div class="thumb d-flex align-items-center me-auto">
+            {{ if .GetTerms "authors" }}
+                {{ range first 1 (.GetTerms "authors") }}
+            <a href='/authors/index.html#{{ .Data.Term }}'>
+                <img src='{{ default "/images/author.png" .Params.thumbnail }}' alt='{{ default .Data.Term .Params.name }}'/>
+            </a>
+            <div class="author">
+                <a class="primary-text-color" href='/authors/index.html#{{ .Data.Term }}'>{{ default .Data.Term .Params.name }}</a>
+            </div>
+                {{ end }}
+            {{ else }}
+            <img src='/images/author.png' alt='Author'/>
+            <div class="author">Author</div>
+            {{ end }}
+        </div>
+        <div class="card-title short-summary">
+            <a href="{{ .Permalink }}" class="primary-text-color text-decoration-none">{{ .Title }}</a>
+        </div>
+        <div class="card-text short-summary">{{ .Summary }}</div>
+    </div>
+    <div class="card-footer d-flex justify-content-between">
+        <div>{{ .ReadingTime }} min read &#8729; {{ dateFormat (default "Jan 2, 2006" .Site.Params.dateFormat) .PublishDate }}</div>
+        <div class="save" data-toggle="tooltip" data-placement="top" title="Save" style="margin-top: -4px;">
+            <svg width="25" height="25" viewBox="0 0 25 25" fill="none" class="dt mo" aria-label="Add to list bookmark button">
+                <path d="M18 2.5a.5.5 0 0 1 1 0V5h2.5a.5.5 0 0 1 0 1H19v2.5a.5.5 0 1 1-1 0V6h-2.5a.5.5 0 0 1 0-1H18V2.5zM7 7a1 1 0 0 1 1-1h3.5a.5.5 0 0 0 0-1H8a2 2 0 0 0-2 2v14a.5.5 0 0 0 .8.4l5.7-4.4 5.7 4.4a.5.5 0 0 0 .8-.4v-8.5a.5.5 0 0 0-1 0v7.48l-5.2-4a.5.5 0 0 0-.6 0l-5.2 4V7z" fill="currentColor"></path>
+            </svg>
+        </div>
+    </div>
+</article>

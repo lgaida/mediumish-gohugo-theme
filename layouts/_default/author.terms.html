@@ -3,9 +3,9 @@
 {{ end }}
 
 {{ define "main" }}
-    <!-- Begin Index
+    <!-- Begin Page
     ================================================== -->
-    <article data-permalink="{{ .RelPermalink }}">
+    <section>
         <header>
             {{- partial "_shared/title.html" . -}}
         </header>
@@ -13,10 +13,19 @@
         <div>
             {{ .Content }}
         </div>
-    </article>
-    <!-- End Index
-        ================================================== -->
+        <div>
+            {{ range sort .Data.Pages ".Weight" }}
+                {{- partial "list-partials/author.html" . -}}
+            {{end}}
+        </div>
+    </section>
+    <!-- End Page
+    ================================================== -->
     {{- partial "_shared/alertbar.html" . -}}
+{{ end }}
+
+{{ define "aside-bottom" }}
+    {{- partial "_shared/morefrom.html" . -}}
 {{ end }}
 
 {{ define "footer"}}

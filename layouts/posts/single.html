@@ -1,0 +1,108 @@
+{{ define "header"}}
+    {{- partial "_shared/navbar.html" . -}}
+{{ end }}
+
+{{ define "main" }}
+<!-- Begin Post
+    ================================================== -->
+    <article data-permalink="{{ .RelPermalink }}">
+        <header>
+            {{- partial "_shared/title.html" . -}}
+            <!-- Post Summary -->
+            <h2>{{ .Summary }}</h2>
+            <!-- Author Box -->
+            <div class="d-flex align-items-center">
+                <div class="thumb d-flex">
+                {{ if .GetTerms "authors" }}
+                    {{ range first 1 (.GetTerms "authors") }}
+                <a href='/authors/index.html#{{ .Data.Term }}'>
+                    <img src='{{ default "/images/author.png" .Params.thumbnail }}' alt='{{ default .Data.Term .Params.name }}'/>
+                </a>
+            </div>
+            <div>
+                <div class="author">
+                    <a class="primary-text-color" href='/authors/index.html#{{ .Data.Term }}'>{{ default .Data.Term .Params.name }}</a>
+                        {{ with .Params.Linkedin }}
+                    &#8729; <a href="https://linkedin.com/in/{{ . }}"  data-toggle="tooltip" data-placement="top" title="Follow on LinkedIn">Follow</a>
+                        {{ end }}
+                </div>
+                    {{ end }}
+                {{ else }}
+                <img src='/images/author.png' alt='Author'/>
+            </div>
+            <div>
+                <div class="author">Author</div>
+                {{ end }}
+                <div class="post-date">
+                    Published in
+                        {{ range $key, $value := .Params.tags }}
+                            <a class="text-capitalize primary-text-color" href="/tags/{{ $value | urlize }}">{{ $value }}</a>{{ if ne $key (sub (len $.Params.tags) 1) }}, {{ else }}{{ end }}
+                        {{ end }}
+                        &#8729;
+                        {{ .ReadingTime }} min read
+                        &#8729;
+                        {{ dateFormat (default "Jan 2, 2006" .Site.Params.dateFormat) .PublishDate }}
+                    </div>
+                </div>
+            </div>
+        </header>
+        <!-- Post Share -->
+        {{- partial "single-partials/share.html" . -}}
+
+        <!-- Post Featured Image -->
+        {{$images := .Resources.ByType "image"}}
+        {{with $images.GetMatch "*cover*" }}
+            <img class="featured-image img-fluid" src="{{ .Permalink }}" alt="thumbnail for this post">
+        {{end}}
+        <!-- End Featured Image -->
+
+        <!-- Post Content -->
+        <div class="post-content">
+            {{ $content := .Content }}
+            {{ $content | replaceRE `(?s)</p>\s*$` "&nbsp;<span class=\"end-cap\">&nbsp;</span></p>" | safeHTML }}
+        </div>
+    </article>
+
+    <div>
+        <!-- Navigation -->
+        <div class="navigation d-flex justify-content-between">
+            {{with .NextInSection}}
+            <a class="d-block col-md-6" href="{{ .Permalink }}"> &laquo; {{.Title}}</a>
+            {{end}}
+            {{with .PrevInSection}}
+            <a class="d-block col-md-6 text-lg-right" href="{{ .Permalink }}">{{.Title}} &raquo;</a>
+            {{end}}
+        </div>            
+
+        <!-- Post Categories -->
+        <div class="after-post-tags">
+            {{ range .Params.tags }}
+            <a class="badge rounded-pill text-capitalize text-decoration-none" href="{{ "/tags/" | relLangURL }}{{ . | urlize }}">{{ . }}</a>
+            {{ end }}
+        </div>
+        <!-- End Categories -->
+
+        {{ if .Site.Config.Services.Disqus.Shortname }}
+        <!-- Comments -->
+            {{ if (or (not (isset .Params "comments")) (eq .Params.Comments true)) }}
+                {{- partial "single-partials/comments.html" . -}}
+            {{ end }}
+        {{ end }}
+    </div>
+    <!-- End Post
+        ================================================== -->
+    {{- partial "_shared/alertbar.html" . -}}
+{{ end }}
+
+{{ define "aside-bottom" }}
+    {{ if .GetTerms "authors" }}
+        {{ range first 1 (.GetTerms "authors") }}
+            {{- partial "single-partials/writtenby.html" . -}}
+        {{ end }}
+    {{ end }}
+    {{- partial "_shared/morefrom.html" . -}}
+{{ end }}
+
+{{ define "footer"}}
+    {{- partial "_shared/footer.html" . -}}
+{{ end }}

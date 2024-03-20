@@ -1,0 +1,24 @@
+<aside class="written-by d-flex justify-content-center">
+    <section>
+        <div>
+            <div class="thumb d-flex">
+                <img src='{{ default "/images/author.png" .Params.thumbnail }}' alt='{{ default .Data.Term .Params.name }}'/>
+            </div>
+        </div>
+        <div class="d-flex justify-content-between">
+            <div>
+                <h1><a class="primary-text-color text-decoration-none" href='/authors/index.html#{{ .Data.Term }}'>Written by {{ default .Data.Term .Params.name }}</a></h1>
+                <div class="title"><a href="/" class="primary-text-color">{{ default "Author" .Params.title }}</a></div>
+                <div class="summary">{{ .Summary }}</div>
+            </div>
+            {{ if isset .Params "linkedin" }}
+            <div>
+                <div class="text-center">
+                    <a class="badge rounded-pill text-capitalize text-decoration-none" href="https://linkedin.com/in/{{ .Params.linkedin }}"  data-toggle="tooltip" data-placement="top" title="Follow on LinkedIn">Follow</a>
+                </div>
+            </div>
+            {{ end }}
+        </div>
+        <hr/>
+    </section>
+</aside>
